@@ -7,6 +7,7 @@ import numpy as np
 MIN_REFERENCE = 14
 
 
+
 def reference_bounds(history: list[float] | np.ndarray, threshold: float = 3.5) -> dict | None:
     """Robust center and range from earlier observations. The current point is not included."""
     values = np.asarray(history, dtype=float)
