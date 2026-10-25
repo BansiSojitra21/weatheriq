@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import numpy as np
 import pandas as pd
-
 # Weather lags and rolling statistics use only the issuance day and earlier days.
 # Calendar fields use the target date because that calendar is known when the forecast is issued.
 FEATURE_COLUMNS = [
