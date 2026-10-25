@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
-
 from app.db.models import CurrentCondition, ForecastRun, ForecastValue, Location, WeatherObservation
 from app.services.ingestion import catch_up_daily_history
 from app.services.seed import seed_defaults
