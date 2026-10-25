@@ -1,0 +1,18 @@
+FROM python:3.13-slim
+
+WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pyproject.toml ./
+COPY services ./services
+COPY ml ./ml
+COPY scripts ./scripts
+RUN pip install --no-cache-dir .
+
+ENV PYTHONPATH=/app:/app/services/api
+ENV WEATHERIQ_AUTO_CREATE_SCHEMA=false
+WORKDIR /app/services/api
+EXPOSE 8000
+CMD ["sh", "-c", "alembic upgrade head && python -m uvicorn app.main:app --app-dir /app/services/api --host 0.0.0.0 --port 8000"]

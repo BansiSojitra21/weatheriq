@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.pyc
+.env
+data/*.db
+data/cache/
+ml/artifacts/*.joblib
+ml/artifacts/*.json
+apps/web/node_modules/
+apps/web/.next/
+apps/web/playwright-report/
+apps/web/test-results/
+apps/web/coverage/
+*.tsbuildinfo
+.DS_Store

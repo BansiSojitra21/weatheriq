@@ -1,0 +1,53 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: weatheriq
+      POSTGRES_PASSWORD: weatheriq
+      POSTGRES_DB: weatheriq
+    ports:
+      - "5432:5432"
+    volumes:
+      - weatheriq_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U weatheriq -d weatheriq"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  api:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.api
+    environment:
+      WEATHERIQ_API_KEY: dev-weatheriq-key
+      WEATHERIQ_DATABASE_URL: postgresql+psycopg://weatheriq:weatheriq@postgres:5432/weatheriq
+      WEATHERIQ_AUTO_CREATE_SCHEMA: "false"
+      WEATHERIQ_CORS_ORIGINS: http://localhost:3000
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - weatheriq_models:/app/ml/artifacts
+      - weatheriq_cache:/app/data/cache
+
+  web:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile.web
+    environment:
+      API_INTERNAL_BASE_URL: http://api:8000/api/v1
+      WEATHERIQ_API_KEY: dev-weatheriq-key
+      NEXT_PUBLIC_APP_NAME: WeatherIQ
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8000/api/v1
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+
+volumes:
+  weatheriq_postgres:
+  weatheriq_models:
+  weatheriq_cache:
