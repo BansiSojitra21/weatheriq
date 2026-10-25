@@ -15,33 +15,41 @@ test("historical filters change the selected variable", async ({ page }) => {
 
 test("forecast page shows a model prediction or an honest unavailable state", async ({ page }) => {
   await page.goto("/forecast");
-  await expect(page.getByRole("heading", { name: "Forecast" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "See what the next days may bring" })).toBeVisible();
   await expect(
-    page.getByText("Prediction", { exact: true }).or(page.getByText(/Forecast unavailable|No trained temperature model/i)),
+    page.getByText("WeatherIQ model estimate").or(page.getByText(/Forecast unavailable|No trained temperature model/i)),
   ).toBeVisible();
 });
 
-test("a simulated alert appears after the workflow records it", async ({ page, request }) => {
-  const locations = await request.get("http://127.0.0.1:8000/api/v1/locations");
-  const items = (await locations.json()).items as { id: number; is_default: boolean }[];
-  const locationId = (items.find((item) => item.is_default) ?? items[0]).id;
-  const eventId = `e2e-${Date.now()}`;
-  const ruleName = `Playwright simulated heat ${eventId}`;
-  const created = await request.post("http://127.0.0.1:8000/api/v1/workflows/weather-event", {
-    headers: { "X-API-Key": "dev-weatheriq-key", "Content-Type": "application/json" },
-    data: {
-      event_id: eventId,
-      location_id: locationId,
-      timestamp: "2026-10-20T00:00:00Z",
-      source: "playwright",
-      variable: "temperature_c",
-      actual_value: 47,
-      threshold: 40,
-      severity: "warning",
-      rule_name: ruleName,
-    },
-  });
-  expect(created.ok()).toBeTruthy();
-  await page.goto("/alerts");
-  await expect(page.getByRole("heading", { name: `${ruleName} at Mumbai` })).toBeVisible();
+test("weather intelligence shows transparent risk and alert controls", async ({ page }) => {
+  await page.goto("/weather-intelligence");
+  await expect(page.getByRole("heading", { name: "Weather Intelligence & Alerts" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Transparent weather risk index" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Threshold rules" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Alert history" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Evaluate selected city" })).toHaveCount(0);
+  await expect(page.getByRole("group", { name: "India city risk map" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Open notifications and recent alerts" })).toBeVisible();
+  await page.getByRole("button", { name: "Open notifications and recent alerts" }).click();
+  await expect(page.getByRole("region", { name: "Notifications and recent alerts" })).toBeVisible();
+  await expect(page.getByText("Recent alert history")).toBeVisible();
+  await expect(page.getByRole("link", { name: "View full alert history" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Turn (on|off) Chrome notifications/ })).toBeVisible();
+  const cityDropdown = page.getByRole("button", { name: "Location" });
+  const unitsDropdown = page.getByRole("button", { name: "Units" });
+  await expect(cityDropdown).toBeVisible();
+  await expect(unitsDropdown).toBeVisible();
+  expect(await cityDropdown.getAttribute("class")).toBe(await unitsDropdown.getAttribute("class"));
+
+  await cityDropdown.click();
+  const cityOptions = page.getByRole("listbox", { name: "Location" });
+  await expect(cityOptions).toBeVisible();
+  expect(await cityOptions.evaluate((element) => element.scrollHeight)).toBeGreaterThan(
+    await cityOptions.evaluate((element) => element.clientHeight),
+  );
+  await cityOptions.getByRole("option").first().click();
+
+  await unitsDropdown.click();
+  await page.getByRole("listbox", { name: "Units" }).getByRole("option", { name: "Imperial" }).click();
+  await expect(unitsDropdown).toContainText("Imperial");
 });

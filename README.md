@@ -26,7 +26,9 @@ Checked on 21 October 2026. Docker and PostgreSQL are not installed here, so the
 | `npm test` (Vitest) | 6 passed |
 | `npx eslint src --max-warnings 0` | passed |
 | `npx tsc --noEmit` | passed |
-| Playwright | 4 passed: overview, analytics filter, forecast, simulated alert |
+| Current web validation | lint, type-check, 5 unit tests, and production build passed |
+| API tests | 28 passed |
+| Playwright | not run after the Weather Intelligence updates; Chromium availability not verified |
 | Open-Meteo bootstrap | 4 cities, exit 0 |
 | Alembic `e99438373e02` | generated and upgraded on a temporary SQLite database |
 | Docker Compose | not run |
@@ -77,6 +79,8 @@ Copy-Item .env.example .env
 ```
 
 Bootstrap ingests Open-Meteo history, current conditions, the live forecast, and previous-run benchmarks for the four seed cities, then trains and evaluates the models. Use `--skip-ingest` or `--skip-train` to repeat only one side. `scripts/refresh_weather.py` refreshes current conditions and forecasts and evaluates rules. It does not retrain.
+
+Enabled alert rules are evaluated once when created or re-enabled, then automatically every five minutes while the API is running. Scheduled checks refresh stale city weather snapshots before evaluating. The Weather Intelligence page polls for new alerts every 30 seconds and can show native Chrome notifications after permission is granted; enabling them sends a test notification. Keep the page open, including in a background tab, to receive notifications. This local setup does not send background push after the page is closed, SMS, or email notifications. Set `WEATHERIQ_ALERT_SCHEDULE_ENABLED=false` to disable scheduled checks.
 
 API:
 

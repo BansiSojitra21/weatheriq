@@ -1,10 +1,12 @@
 "use client";
 
-import { Activity, Bell, ChartColumn, CloudSun, Gauge, LayoutDashboard } from "lucide-react";
+import { ChartColumn, CloudSun, LayoutDashboard, ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { DashboardProvider, useDashboard } from "@/components/dashboard-context";
+import { NotificationCenter } from "@/components/notification-center";
+import { SelectionDropdown } from "@/components/selection-dropdown";
 import { Select } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -12,9 +14,7 @@ const NAV = [
   { href: "/", label: "Overview", icon: LayoutDashboard },
   { href: "/analytics", label: "Analytics", icon: ChartColumn },
   { href: "/forecast", label: "Forecast", icon: CloudSun },
-  { href: "/anomalies", label: "Anomalies", icon: Activity },
-  { href: "/alerts", label: "Alerts", icon: Bell },
-  { href: "/monitoring", label: "Monitoring", icon: Gauge },
+  { href: "/weather-intelligence", label: "Weather Intelligence", icon: ShieldAlert },
 ];
 
 function Shell({ children }: { children: ReactNode }) {
@@ -23,66 +23,24 @@ function Shell({ children }: { children: ReactNode }) {
   const { locations, locationId, setLocationId, location, units, setUnits } = useDashboard();
 
   return (
-    <div className="min-h-screen overflow-x-hidden">
+    <div className="min-h-screen overflow-x-clip">
       <header className="sticky top-0 z-30 border-b border-border bg-white">
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-3 px-4 py-3">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <Link href="/" className="flex min-w-0 items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-white">
-                <CloudSun className="h-5 w-5" aria-hidden />
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-x-4 gap-y-3 px-4 py-3 sm:grid-cols-[minmax(0,1fr)_auto] xl:grid-cols-[auto_minmax(0,1fr)_auto]">
+          <Link href="/" className="flex min-w-0 items-center gap-3 sm:col-start-1 sm:row-start-1">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-white">
+              <CloudSun className="h-5 w-5" aria-hidden />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">WeatherIQ</span>
+              <span className="block truncate text-[0.7rem] text-muted-foreground sm:text-xs">
+                {location ? `${location.name}, ${location.country} · ${location.timezone}` : "Select a location"}
               </span>
-              <span className="min-w-0">
-                <span className="block text-sm font-semibold tracking-tight text-foreground sm:text-base">WeatherIQ</span>
-                <span className="block truncate text-[0.7rem] text-muted-foreground sm:text-xs">
-                  {location ? `${location.name}, ${location.country} · ${location.timezone}` : "Select a location"}
-                </span>
-              </span>
-            </Link>
-            <div className="grid min-w-0 grid-cols-2 gap-2 sm:flex sm:items-center">
-              <label className="sr-only" htmlFor="location-select">
-                Location
-              </label>
-              <Select
-                id="location-select"
-                className="h-10 rounded-full bg-muted px-3"
-                aria-label="Location"
-                value={locationId ?? ""}
-                onChange={(event) => setLocationId(Number(event.target.value))}
-              >
-                {locations.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
-                  </option>
-                ))}
-              </Select>
-              <Select
-                className="h-10 rounded-full bg-muted px-3"
-                aria-label="Units"
-                value={units}
-                onChange={(event) => setUnits(event.target.value as "metric" | "imperial")}
-              >
-                <option value="metric">Metric</option>
-                <option value="imperial">Imperial</option>
-              </Select>
-            </div>
-          </div>
-          <label className="sr-only md:hidden" htmlFor="page-select">
-            Page
-          </label>
-          <Select
-            id="page-select"
-            className="h-11 w-full rounded-full bg-muted px-3 text-sm md:hidden"
-            aria-label="Page"
-            value={NAV.some((item) => item.href === pathname) ? pathname : "/"}
-            onChange={(event) => router.push(event.target.value)}
+            </span>
+          </Link>
+          <nav
+            aria-label="Primary"
+            className="hidden min-w-0 items-center justify-center gap-1 md:col-span-2 md:row-start-2 md:flex xl:col-span-1 xl:col-start-2 xl:row-start-1 xl:w-fit xl:justify-self-center"
           >
-            {NAV.map((item) => (
-              <option key={item.href} value={item.href}>
-                {item.label}
-              </option>
-            ))}
-          </Select>
-          <nav aria-label="Primary" className="hidden min-w-0 gap-1 rounded-full bg-muted p-1 md:flex">
             {NAV.map((item) => {
               const Icon = item.icon;
               const active = pathname === item.href;
@@ -102,11 +60,46 @@ function Shell({ children }: { children: ReactNode }) {
               );
             })}
           </nav>
+          <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_auto] gap-2 sm:col-start-2 sm:row-start-1 sm:flex sm:items-center xl:col-start-3">
+            <NotificationCenter locations={locations} />
+            <SelectionDropdown
+              label="Location"
+              value={String(locationId ?? "")}
+              onChange={(value) => setLocationId(Number(value))}
+              options={locations.map((item) => ({ value: String(item.id), label: item.name }))}
+              menuClassName="w-56 max-w-[calc(100vw-2rem)]"
+            />
+            <SelectionDropdown
+              label="Units"
+              value={units}
+              onChange={(value) => {
+                if (value === "metric" || value === "imperial") setUnits(value);
+              }}
+              options={[
+                { value: "metric", label: "Metric" },
+                { value: "imperial", label: "Imperial" },
+              ]}
+              className="w-28 shrink-0"
+            />
+          </div>
+          <label className="sr-only md:hidden" htmlFor="page-select">
+            Page
+          </label>
+          <Select
+            id="page-select"
+            className="h-11 w-full rounded-full bg-muted px-3 text-sm md:hidden"
+            aria-label="Page"
+            value={NAV.some((item) => item.href === pathname) ? pathname : "/"}
+            onChange={(event) => router.push(event.target.value)}
+          >
+            {NAV.map((item) => (
+              <option key={item.href} value={item.href}>
+                {item.label}
+              </option>
+            ))}
+          </Select>
         </div>
       </header>
-      <p className="mx-auto w-full min-w-0 max-w-7xl px-4 pt-4 text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-6">
-        WeatherIQ is an analytical tool. It is not a replacement for official emergency alerts or professional meteorological forecasts.
-      </p>
       <main className="mx-auto flex w-full min-w-0 max-w-7xl flex-col gap-4 px-4 py-4 [&>*]:min-w-0 [&>*]:max-w-full">{children}</main>
     </div>
   );

@@ -16,6 +16,7 @@ from app.core.config import get_settings
 from app.core.errors import WeatherIQError
 from app.db.session import init_database
 from app.services.anomaly_schedule import anomaly_detection_loop
+from app.services.alert_schedule import alert_evaluation_loop
 from app.services.catalog import DISCLAIMER
 from app.services.seed import seed_defaults
 
@@ -37,14 +38,21 @@ async def lifespan(_app: FastAPI):
     logger.info("WeatherIQ API ready")
     stop_anomaly_schedule = asyncio.Event()
     anomaly_task = None
+    stop_alert_schedule = asyncio.Event()
+    alert_task = None
     if get_settings().anomaly_schedule_enabled:
         anomaly_task = asyncio.create_task(anomaly_detection_loop(stop_anomaly_schedule))
+    if get_settings().alert_schedule_enabled:
+        alert_task = asyncio.create_task(alert_evaluation_loop(stop_alert_schedule))
     try:
         yield
     finally:
         stop_anomaly_schedule.set()
+        stop_alert_schedule.set()
         if anomaly_task is not None:
             await anomaly_task
+        if alert_task is not None:
+            await alert_task
 
 
 def create_app() -> FastAPI:

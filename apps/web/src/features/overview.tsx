@@ -7,7 +7,6 @@ import { StatePanel } from "@/components/states";
 import { Badge, Card } from "@/components/ui";
 import { api, ApiError } from "@/lib/api";
 import { formatNumber, formatWhen } from "@/lib/format";
-import type { AlertItem, AnomalyItem } from "@/lib/types";
 
 type CurrentResponse = {
   observation: null | {
@@ -34,11 +33,8 @@ type CurrentResponse = {
   };
   hourly: { valid_at: string; temperature: number | null; precipitation: number | null; precipitation_probability: number | null }[];
   daily: { valid_at: string; temperature_min: number | null; temperature_max: number | null; precipitation: number | null; condition: string | null; precipitation_probability: number | null }[];
-  recent_alerts: AlertItem[];
-  recent_anomalies: AnomalyItem[];
   freshness: { retrieved_at: string | null; stale: boolean | null };
   unit_labels: { temperature: string; precipitation: string; wind: string; pressure: string };
-  attribution: string;
 };
 
 function Metric({
@@ -156,22 +152,12 @@ export function OverviewPage() {
           )}
         </Card>
         <Card className="p-4">
-          <h2 className="font-medium">Sun and recent signals</h2>
+          <h2 className="font-medium">Sunrise and sunset</h2>
           <dl className="mt-3 grid gap-2 text-sm">
             <div className="flex justify-between gap-3"><dt>Sunrise</dt><dd>{formatWhen(data?.today_forecast?.sunrise, timeZone)}</dd></div>
             <div className="flex justify-between gap-3"><dt>Sunset</dt><dd>{formatWhen(data?.today_forecast?.sunset, timeZone)}</dd></div>
           </dl>
           <p className="mt-4 text-xs text-muted-foreground">Sunrise and sunset come from the daily forecast, not from a local sensor.</p>
-          <h3 className="mt-4 text-sm font-medium">Recent alerts</h3>
-          {data?.recent_alerts.length ? (
-            <ul className="mt-2 grid gap-2 text-sm">
-              {data.recent_alerts.map((alert) => (
-                <li key={alert.id}>{alert.title}</li>
-              ))}
-            </ul>
-          ) : (
-            <p className="mt-2 text-sm text-muted-foreground">No alerts stored for this location.</p>
-          )}
         </Card>
       </div>
       <Card className="p-4">
@@ -192,7 +178,6 @@ export function OverviewPage() {
           ))}
         </div>
       </Card>
-      <p className="text-xs text-muted-foreground">{data?.attribution}</p>
     </>
   );
 }

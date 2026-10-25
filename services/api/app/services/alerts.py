@@ -25,8 +25,10 @@ def _compare(operator: str, value: float, threshold: float) -> bool:
 
 
 def _candidate_value(
-    rule: AlertRule, observation: WeatherObservation | None, current: CurrentCondition | None
+    rule: AlertRule, observation: WeatherObservation | None, current: CurrentCondition | None, now: datetime
 ) -> tuple[float | None, str | None, datetime | None]:
+    if observation is not None and as_utc(observation.observed_at) < now - timedelta(days=1):
+        observation = None
     if rule.variable == "temperature_c":
         if rule.operator in {"gt", "gte"}:
             if observation and observation.temperature_max_c is not None:
@@ -55,7 +57,9 @@ def _candidate_value(
     return None, None, None
 
 
-def _forecast_candidates(session: Session, location_id: int, rule: AlertRule) -> list[tuple[float, datetime]]:
+def _forecast_candidates(
+    session: Session, location_id: int, rule: AlertRule, now: datetime
+) -> list[tuple[float, datetime]]:
     run = (
         session.query(ForecastRun)
         .filter_by(location_id=location_id, provider="open-meteo", model_name="forecast-daily")
@@ -66,6 +70,9 @@ def _forecast_candidates(session: Session, location_id: int, rule: AlertRule) ->
     values = session.query(ForecastValue).filter_by(run_id=run.id, granularity="daily").all()
     found = []
     for value in values:
+        valid_at = as_utc(value.valid_at)
+        if valid_at < now:
+            continue
         if rule.variable == "temperature_c":
             number = value.temperature_max_c if rule.operator in {"gt", "gte"} else value.temperature_min_c
         elif rule.variable == "precipitation_mm":
@@ -75,7 +82,7 @@ def _forecast_candidates(session: Session, location_id: int, rule: AlertRule) ->
         else:
             number = None
         if number is not None:
-            found.append((float(number), as_utc(value.valid_at)))
+            found.append((float(number), valid_at))
     return found
 
 
@@ -156,10 +163,10 @@ def evaluate_rules(session: Session, location_id: int | None = None) -> dict:
                 .first()
             )
             checks: list[tuple[float, str, datetime]] = []
-            value, kind, event_time = _candidate_value(rule, observation, current)
+            value, kind, event_time = _candidate_value(rule, observation, current, now)
             if value is not None and kind and event_time:
                 checks.append((value, kind, as_utc(event_time)))
-            for forecast_value, valid_at in _forecast_candidates(session, location.id, rule):
+            for forecast_value, valid_at in _forecast_candidates(session, location.id, rule, now):
                 checks.append((forecast_value, "external_forecast", valid_at))
             for actual, condition_kind, event_time in checks:
                 if not _compare(rule.operator, actual, rule.threshold):

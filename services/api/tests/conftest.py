@@ -13,6 +13,7 @@ from app.services.seed import seed_defaults
 def database(tmp_path, monkeypatch):
     monkeypatch.setenv("WEATHERIQ_API_KEY", "test-key")
     monkeypatch.setenv("WEATHERIQ_ANOMALY_SCHEDULE_ENABLED", "false")
+    monkeypatch.setenv("WEATHERIQ_ALERT_SCHEDULE_ENABLED", "false")
     get_settings.cache_clear()
     url = "sqlite:///" + (tmp_path / "test.db").as_posix()
     db_session.reset_database(url)

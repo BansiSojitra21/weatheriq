@@ -30,8 +30,10 @@ from app.services.open_meteo import fetch_json, geocode_url
 from app.services.predictions import external_benchmark, predict_precipitation, predict_temperature
 from app.services.weather_views import current_payload, location_out
 from app.services.workflows import accept_weather_event, pending_alerts, record_delivery, store_report
+from app.services.weather_risk import risk_overview
 
 router = APIRouter(prefix="/api/v1")
+ALERT_SEVERITIES = {"info", "watch", "warning", "low", "moderate", "high", "critical"}
 
 
 class LocationIn(BaseModel):
@@ -440,6 +442,11 @@ def risk_evaluate(body: RiskIn, session: Session = Depends(get_db)) -> dict:
     return evaluate_rules(session, body.location_id)
 
 
+@router.get("/risk/overview")
+def risk_overview_route(session: Session = Depends(get_db)) -> dict:
+    return risk_overview(session)
+
+
 @router.get("/alerts")
 def list_alerts(
     status: str | None = None,
@@ -483,14 +490,16 @@ def list_alerts(
 def create_rule(body: RuleIn, session: Session = Depends(get_db)) -> dict:
     if body.operator not in {"gt", "gte", "lt", "lte"}:
         raise WeatherIQError("operator must be gt, gte, lt, or lte.", code="invalid_operator")
-    if body.severity not in {"info", "watch", "warning"}:
-        raise WeatherIQError("severity must be info, watch, or warning.", code="invalid_severity")
+    if body.severity not in ALERT_SEVERITIES:
+        raise WeatherIQError("severity must be low, moderate, high, or critical.", code="invalid_severity")
     if body.location_id is not None:
         _location(session, body.location_id)
     rule = AlertRule(**body.model_dump())
     session.add(rule)
     session.flush()
-    return rule_out(rule)
+    location_id = body.location_id
+    evaluation = evaluate_rules(session, location_id)
+    return {**rule_out(rule), "evaluation": evaluation}
 
 
 @router.get("/alerts/rules")
@@ -504,11 +513,15 @@ def patch_rule(rule_id: int, body: RulePatch, session: Session = Depends(get_db)
     rule = session.get(AlertRule, rule_id)
     if rule is None:
         raise WeatherIQError("Rule not found.", status_code=404, code="not_found")
-    for key, value in body.model_dump(exclude_unset=True).items():
+    changes = body.model_dump(exclude_unset=True)
+    if changes.get("severity") is not None and changes["severity"] not in ALERT_SEVERITIES:
+        raise WeatherIQError("severity must be low, moderate, high, or critical.", code="invalid_severity")
+    for key, value in changes.items():
         setattr(rule, key, value)
     rule.updated_at = datetime.now(timezone.utc)
     session.flush()
-    return rule_out(rule)
+    evaluation = evaluate_rules(session, rule.location_id) if changes.get("enabled") is True else None
+    return {**rule_out(rule), "evaluation": evaluation}
 
 
 @router.patch("/alerts/{alert_id}", dependencies=[Depends(require_api_key)])

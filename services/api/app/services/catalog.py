@@ -15,8 +15,9 @@ TEMPERATURE_NOTE = (
     "The likely range is an estimate, not a guarantee."
 )
 PRECIPITATION_NOTE = (
-    "Rain predictions use recent daily totals. A day counts as wet above 0.1 mm. "
-    "This is not a flood warning."
+    "The experimental WeatherIQ rain classifier uses recent daily totals, with a wet day defined as above 0.1 mm. "
+    "Its held-out probability scores were worse than a simple climatology baseline, so use the separate "
+    "Open-Meteo forecast for a rain outlook. This is not a flood warning."
 )
 ANOMALY_NOTE = (
     "A flag means the measurement looks unusual compared with recent days. "

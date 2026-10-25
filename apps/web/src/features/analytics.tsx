@@ -11,6 +11,17 @@ import { defaultRange, formatNumber, formatWhen } from "@/lib/format";
 
 const VARIABLES = ["temperature", "precipitation", "humidity", "wind_speed", "pressure", "cloud_cover"] as const;
 
+const FIELD_LABELS: Record<string, string> = {
+  temperature_c: "Temperature",
+  temperature_min_c: "Daily low",
+  temperature_max_c: "Daily high",
+  humidity_pct: "Humidity",
+  precipitation_mm: "Rain",
+  wind_speed_kmh: "Wind",
+  pressure_hpa: "Pressure",
+  cloud_cover_pct: "Cloud cover",
+};
+
 export function AnalyticsPage() {
   const { locationId, locations, units, timeZone } = useDashboard();
   const initial = defaultRange();
@@ -36,7 +47,9 @@ export function AnalyticsPage() {
     queryFn: () =>
       api<{
         rows: number;
-        missing: Record<string, { missing_rate: number | null }>;
+        missing: Record<string, { count: number; missing: number; missing_rate: number | null }>;
+        variables: Record<string, { count: number; mean: number | null; min: number | null; max: number | null }>;
+        unit_labels: { temperature: string; precipitation: string; wind: string; pressure: string };
         monthly: { month: number; temperature_mean: number | null; precipitation_total: number | null }[];
         seasonal: { season: string; temperature_mean: number | null; precipitation_total: number | null }[];
         season_note: string;
@@ -51,6 +64,15 @@ export function AnalyticsPage() {
       ),
   });
   const failed = trends.error || summary.error || matrix.error;
+  const fieldUnit = (field: string) => {
+    if (field.startsWith("temperature")) return summary.data?.unit_labels.temperature;
+    if (field === "precipitation_mm") return summary.data?.unit_labels.precipitation;
+    if (field === "wind_speed_kmh") return summary.data?.unit_labels.wind;
+    if (field === "pressure_hpa") return summary.data?.unit_labels.pressure;
+    return "%";
+  };
+  const displayValue = (value: number | null, unit: string | undefined) =>
+    value == null ? "—" : `${value.toFixed(2)}${unit ? ` ${unit}` : ""}`;
   return (
     <>
       <div>
@@ -171,15 +193,42 @@ export function AnalyticsPage() {
             </div>
           </Card>
           <Card className="p-4 lg:col-span-2">
-            <h2 className="font-medium">Missing data</h2>
-            <ul className="mt-2 grid gap-1 text-sm sm:grid-cols-2">
-              {Object.entries(summary.data.missing).map(([key, value]) => (
-                <li key={key} className="flex justify-between border-b border-border py-1">
-                  <span>{key}</span>
-                  <span>{value.missing_rate == null ? "—" : `${(value.missing_rate * 100).toFixed(1)}%`}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className="font-medium">Data coverage and observed values</h2>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {summary.data.rows} daily records in the selected range. Means and ranges use available readings only.
+            </p>
+            <div className="mt-3 overflow-x-auto">
+              <table className="w-full min-w-[680px] text-left text-sm">
+                <thead>
+                  <tr>
+                    <th className="py-2 pr-3">Measure</th>
+                    <th className="py-2 pr-3">Available</th>
+                    <th className="py-2 pr-3">Missing</th>
+                    <th className="py-2 pr-3">Mean</th>
+                    <th className="py-2 pr-3">Minimum</th>
+                    <th className="py-2">Maximum</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {summary.data.rows === 0 ? (
+                    <tr><td colSpan={6} className="border-t border-border py-3 text-muted-foreground">No observations in this date range.</td></tr>
+                  ) : Object.entries(summary.data.missing).map(([key, coverage]) => {
+                    const stats = summary.data.variables[key];
+                    const unit = fieldUnit(key);
+                    return (
+                      <tr key={key} className="border-t border-border">
+                        <th className="py-2 pr-3 font-normal">{FIELD_LABELS[key] ?? key}</th>
+                        <td className="py-2 pr-3">{coverage.count}</td>
+                        <td className="py-2 pr-3">{coverage.missing}</td>
+                        <td className="py-2 pr-3">{displayValue(stats?.mean ?? null, unit)}</td>
+                        <td className="py-2 pr-3">{displayValue(stats?.min ?? null, unit)}</td>
+                        <td className="py-2">{displayValue(stats?.max ?? null, unit)}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
             <Button className="mt-4" variant="secondary" asChild>
               <a href={`/api/proxy/analytics/export?location_id=${locationId}&start=${start}&end=${end}&units=${units}`}>Export CSV</a>
             </Button>

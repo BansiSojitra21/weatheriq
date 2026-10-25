@@ -35,9 +35,9 @@ TEMPERATURE_LIMITATIONS = (
     "Nothing is claimed beyond the trained 1 to 7 day range."
 )
 PRECIPITATION_LIMITATIONS = (
-    "Rain predictions use recent daily totals. A day counts as wet above 0.1 mm. "
-    "Most days are dry. The cutoff used to call a day wet was chosen on earlier days and then kept fixed. "
-    "Amounts cannot go below zero. This is not a flood warning."
+    "The experimental rain classifier uses recent daily totals and defines a wet day as above 0.1 mm. "
+    "Its probabilities are not necessarily calibrated and should not be treated as an operational weather forecast. "
+    "Rainfall amounts cannot go below zero. This is not a flood warning."
 )
 ANOMALY_LIMITATIONS = (
     "A flag means the measurement looks unusual compared with recent days or a pattern check "

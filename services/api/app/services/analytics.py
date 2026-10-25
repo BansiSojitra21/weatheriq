@@ -219,15 +219,12 @@ def seasonal(frame: pd.DataFrame, units: str) -> list[dict]:
 def correlation(frame: pd.DataFrame) -> dict:
     columns = ["temperature_c", "precipitation_mm", "humidity_pct", "wind_speed_kmh", "pressure_hpa", "cloud_cover_pct"]
     if frame.empty:
-        return {"variables": columns, "matrix": [], "counts": [], "note": "No observations in the selected range."}
+        return {"variables": columns, "matrix": [], "note": "No observations in the selected range."}
     matrix = []
-    counts = []
     for left in columns:
         row = []
-        count_row = []
         for right in columns:
             pair = frame[[left, right]].dropna()
-            count_row.append(int(len(pair)))
             if left == right:
                 row.append(1.0 if len(pair) >= 10 else None)
                 continue
@@ -236,12 +233,13 @@ def correlation(frame: pd.DataFrame) -> dict:
                 continue
             row.append(round(float(pair[left].corr(pair[right])), 4))
         matrix.append(row)
-        counts.append(count_row)
     return {
         "variables": columns,
         "matrix": matrix,
-        "counts": counts,
-        "note": "Pearson correlation on pairwise complete observations. Correlation does not depend on unit scaling.",
+        "note": (
+            "Pearson r describes linear association, not causation. It uses pairwise-complete days. "
+            "Coefficients are unavailable with fewer than 10 paired days or when a variable has no variation."
+        ),
     }
 
 

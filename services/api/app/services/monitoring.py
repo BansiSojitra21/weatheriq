@@ -47,7 +47,7 @@ def monitoring_payload(session: Session) -> dict:
         total = len(recent)
         for column in ("temperature_c", "precipitation_mm", "humidity_pct", "wind_speed_kmh", "pressure_hpa"):
             absent = sum(1 for row in recent if getattr(row, column) is None)
-            missing[column] = {"missing_rate": round(absent / total, 4), "rows": total}
+            missing[column] = {"missing_rate": round(absent / total, 4), "missing": absent, "rows": total}
     drift = None
     temperature = reports.get("temperature") or {}
     if temperature.get("training_temperature_mean") is not None and recent:

@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     cors_origins: str = "http://localhost:3000"
     auto_create_schema: bool = True
     anomaly_schedule_enabled: bool = True
+    alert_schedule_enabled: bool = True
     forecast_url: str = "https://api.open-meteo.com/v1/forecast"
     archive_url: str = "https://archive-api.open-meteo.com/v1/archive"
     previous_runs_url: str = "https://previous-runs-api.open-meteo.com/v1/forecast"

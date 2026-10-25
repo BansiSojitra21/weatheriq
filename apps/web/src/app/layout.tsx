@@ -12,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "WeatherIQ",
-  description: "Weather intelligence for historical analysis, short-horizon forecasts, anomalies, and alerts.",
+  description: "Weather intelligence with historical analytics, short-horizon forecasts, regional risk scores, and threshold alerts.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

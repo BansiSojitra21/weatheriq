@@ -2,7 +2,7 @@ import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
-import { AlertActions } from "@/features/alerts";
+import { AlertActions } from "@/components/alert-actions";
 import { chartColors, LineSeriesChart } from "@/components/charts";
 import { StatePanel } from "@/components/states";
 
@@ -45,4 +45,3 @@ describe("charts and alert actions", () => {
     expect(onChange).toHaveBeenCalledWith("acknowledged");
   });
 });
-

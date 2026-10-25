@@ -88,6 +88,60 @@ def test_workflow_event_is_deduplicated(client):
     assert refreshed.json()["items"][0]["delivery"]["channel"] == "test"
 
 
+def test_alert_rule_accepts_requested_severity_levels(client):
+    location = client.get("/api/v1/locations").json()["items"][0]
+    response = client.post(
+        "/api/v1/alerts/rules",
+        headers={"X-API-Key": "test-key"},
+        json={
+            "name": "Critical wind",
+            "location_id": location["id"],
+            "variable": "wind_speed_kmh",
+            "operator": "gt",
+            "threshold": 60,
+            "severity": "critical",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["severity"] == "critical"
+
+
+def test_creating_matching_enabled_rule_records_alert_immediately(client, database):
+    from datetime import datetime, timezone
+
+    location = client.get("/api/v1/locations").json()["items"][0]
+    database.add(
+        WeatherObservation(
+            location_id=location["id"],
+            observed_at=datetime.now(timezone.utc),
+            granularity="daily",
+            temperature_c=27,
+            temperature_max_c=27,
+            provider="test",
+            retrieved_at=datetime.now(timezone.utc),
+        )
+    )
+    database.commit()
+    response = client.post(
+        "/api/v1/alerts/rules",
+        headers={"X-API-Key": "test-key"},
+        json={
+            "name": "Warm today",
+            "location_id": location["id"],
+            "variable": "temperature_c",
+            "operator": "gt",
+            "threshold": 25,
+            "severity": "high",
+        },
+    )
+
+    assert response.status_code == 200
+    assert response.json()["evaluation"]["created"] == 1
+    alerts = client.get("/api/v1/alerts", params={"location_id": location["id"]}).json()["items"]
+    assert any(alert["title"] == f"Warm today at {location['name']}" for alert in alerts)
+
+
 def test_monitoring_and_correlation_handle_sqlite_timestamps(client, database):
     from datetime import datetime, timedelta, timezone
 
@@ -110,7 +164,9 @@ def test_monitoring_and_correlation_handle_sqlite_timestamps(client, database):
             )
         )
     database.commit()
-    assert client.get("/api/v1/monitoring").status_code == 200
+    monitoring = client.get("/api/v1/monitoring")
+    assert monitoring.status_code == 200
+    assert monitoring.json()["missing_data"]["temperature_c"]["missing"] == 0
     end = (start + timedelta(days=14)).date().isoformat()
     correlation = client.get(f"/api/v1/analytics/correlation?location_id=1&start={start.date().isoformat()}&end={end}")
     assert correlation.status_code == 200
