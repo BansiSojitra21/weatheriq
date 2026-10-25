@@ -4,6 +4,12 @@ WeatherIQ is a local weather-intelligence dashboard. It stores Open-Meteo observ
 
 It is an analytical tool. It is not a replacement for official emergency alerts or professional meteorological forecasts. Open-Meteo fields are model and reanalysis output, not readings from a local weather station. Weather data by [Open-Meteo.com](https://open-meteo.com/), licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
+## Recent updates
+
+- Renamed the frontend app folder to `frontend` at the repo root.
+- Kept the Next.js 16 frontend, API integration, and local weather intelligence workflows intact.
+- Updated the docs and build configuration to match the new frontend directory name.
+
 ## What is running
 
 | Surface | URL |
@@ -88,11 +94,11 @@ API:
 .venv\Scripts\python.exe -m uvicorn app.main:app --app-dir services/api --host 127.0.0.1 --port 8000
 ```
 
-Web:
+Frontend:
 
 ```powershell
-cd apps\web
-Copy-Item ..\..\.env.example .env.local
+cd frontend
+Copy-Item ..\.env.example .env.local
 # Set API_INTERNAL_BASE_URL=http://127.0.0.1:8000/api/v1
 # Set WEATHERIQ_API_KEY to the same value as the API
 npm install --legacy-peer-deps
@@ -113,7 +119,7 @@ Useful commands:
 ```powershell
 .venv\Scripts\python.exe -m pytest -q
 .venv\Scripts\python.exe -m ruff check services scripts ml
-cd apps\web
+cd frontend
 npm test
 npx eslint src --max-warnings 0
 npx playwright test
@@ -141,7 +147,7 @@ Open-Meteo's free API is for non-commercial use, with published limits of 10,000
 
 ## Layout
 
-- `apps/web` — Next.js 16 App Router, React 19, TypeScript, Tailwind 4
+- `frontend` — Next.js 16 App Router, React 19, TypeScript, Tailwind 4
 - `services/api` — FastAPI, SQLAlchemy 2, Alembic
 - `ml` — features, chronological splits, training, anomaly scoring
 - `scripts` — bootstrap, training, refresh

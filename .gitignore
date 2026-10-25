@@ -8,10 +8,10 @@ data/*.db
 data/cache/
 ml/artifacts/*.joblib
 ml/artifacts/*.json
-apps/web/node_modules/
-apps/web/.next/
-apps/web/playwright-report/
-apps/web/test-results/
-apps/web/coverage/
+frontend/node_modules/
+frontend/.next/
+frontend/playwright-report/
+frontend/test-results/
+frontend/coverage/
 *.tsbuildinfo
 .DS_Store
