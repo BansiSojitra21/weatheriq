@@ -4,7 +4,6 @@ from app.db.models import WeatherObservation
 from app.services.ingestion import upsert_observations
 from app.services.open_meteo import parse_daily_archive
 
-
 def test_parse_daily_archive_cleans_rows():
     payload = {
         "daily": {
