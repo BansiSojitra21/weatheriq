@@ -99,7 +99,7 @@ export function OverviewPage() {
           <div className="flex flex-wrap items-center gap-2">
             <Badge tone="accent">Observation</Badge>
             {data?.freshness.stale ? <Badge tone="amber">Stale</Badge> : <Badge tone="ok">Freshness checked</Badge>}
-            <span className="text-xs text-muted-foreground">Updated {formatWhen(data?.freshness.retrieved_at, timeZone)}</span>
+            <span className="text-xs text-muted-foreground">Updated {data?.freshness.retrieved_at ? new Intl.DateTimeFormat("en-GB", { timeZone, day: "2-digit", month: "short" }).format(new Date(data.freshness.retrieved_at)) : "Unavailable"}</span>
           </div>
         </div>
         <div className="mt-5 flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-end sm:justify-between">
