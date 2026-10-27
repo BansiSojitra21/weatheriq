@@ -18,7 +18,6 @@ from app.services.ingestion import ingest_many
 from app.services.seed import seed_defaults
 
 
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Bootstrap WeatherIQ local data and models.")
     parser.add_argument("--skip-ingest", action="store_true")

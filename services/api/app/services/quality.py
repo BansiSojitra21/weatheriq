@@ -18,7 +18,7 @@ RANGES: dict[str, tuple[float, float]] = {
 
 
 def clean_value(name: str, value: object) -> float | None:
-    """Return a finite in-range float, or None when the provider value is missing or implausible."""
+    """Return a finite float, optionally validating a known weather field range."""
     if value is None:
         return None
     if isinstance(value, str) and not value.strip():
@@ -29,9 +29,11 @@ def clean_value(name: str, value: object) -> float | None:
         return None
     if not math.isfinite(number):
         return None
-    low, high = RANGES[name]
-    if number < low or number > high:
-        return None
+    bounds = RANGES.get(name)
+    if bounds is not None:
+        low, high = bounds
+        if number < low or number > high:
+            return None
     return number
 
 

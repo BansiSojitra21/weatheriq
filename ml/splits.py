@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from datetime import datetime
 
+
 def chronological_split(
     dates: list[datetime],
     train_ratio: float = 0.7,

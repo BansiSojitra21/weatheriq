@@ -15,8 +15,8 @@ from app.api.routes import router
 from app.core.config import get_settings
 from app.core.errors import WeatherIQError
 from app.db.session import init_database
-from app.services.anomaly_schedule import anomaly_detection_loop
 from app.services.alert_schedule import alert_evaluation_loop
+from app.services.anomaly_schedule import anomaly_detection_loop
 from app.services.catalog import DISCLAIMER
 from app.services.seed import seed_defaults
 

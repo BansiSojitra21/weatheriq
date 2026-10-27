@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: weatheriq
+Version: 1.0.0
+Summary: WeatherIQ weather intelligence API, ingestion, and local ML models.
+Requires-Python: >=3.11
+Requires-Dist: fastapi==0.156.8
+Requires-Dist: uvicorn[standard]==0.54.0
+Requires-Dist: sqlalchemy==2.1.5
+Requires-Dist: alembic==1.20.0
+Requires-Dist: pydantic==2.14.1
+Requires-Dist: pydantic-settings==2.16.1
+Requires-Dist: httpx==0.28.1
+Requires-Dist: pandas==3.0.6
+Requires-Dist: numpy==2.5.4
+Requires-Dist: scikit-learn==1.9.1
+Requires-Dist: statsmodels==0.15.0
+Requires-Dist: joblib==1.6.0
+Requires-Dist: lightgbm==4.7.0
+Requires-Dist: shap==0.54.1
+Requires-Dist: psycopg[binary]==3.3.6
+Provides-Extra: dev
+Requires-Dist: pytest==9.1.1; extra == "dev"
+Requires-Dist: ruff==0.17.1; extra == "dev"

@@ -28,9 +28,9 @@ from app.services.ingestion import ensure_fresh_current, ingest_many
 from app.services.monitoring import monitoring_payload
 from app.services.open_meteo import fetch_json, geocode_url
 from app.services.predictions import external_benchmark, predict_precipitation, predict_temperature
+from app.services.weather_risk import risk_overview
 from app.services.weather_views import current_payload, location_out
 from app.services.workflows import accept_weather_event, pending_alerts, record_delivery, store_report
-from app.services.weather_risk import risk_overview
 
 router = APIRouter(prefix="/api/v1")
 ALERT_SEVERITIES = {"info", "watch", "warning", "low", "moderate", "high", "critical"}

@@ -2,7 +2,6 @@ from datetime import datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
-
 from ml.features import FEATURE_COLUMNS, build_supervised
 from ml.splits import chronological_split
 from ml.train import load_bundle, save_bundle, train_precipitation_model, train_temperature_model
