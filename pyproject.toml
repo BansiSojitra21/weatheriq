@@ -56,4 +56,4 @@ select = ["E", "F", "I", "W"]
 script_location = "services/api/alembic"
 
 [tool.vercel]
-entrypoint = "services/api/app/main:app"
+entrypoint = "services.api.app.main:app"
