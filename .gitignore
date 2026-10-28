@@ -15,3 +15,4 @@ frontend/test-results/
 frontend/coverage/
 *.tsbuildinfo
 .DS_Store
+start.ps1
