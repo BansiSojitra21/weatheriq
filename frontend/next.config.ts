@@ -1,16 +1,5 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
-  allowedDevOrigins: ["127.0.0.1"],
-  turbopack: {
-    root: import.meta.dirname,
-    rules: {
-      "*.css": {
-        loaders: ["@tailwindcss/turbopack"],
-        as: "*.css",
-      },
-    },
-  },
-};
+const nextConfig: NextConfig = {};
 
 export default nextConfig;
