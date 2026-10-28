@@ -1,0 +1,8 @@
+# Ignore Python backend, data, and ML services from Vercel build
+pyproject.toml
+uv.lock
+services/
+ml/
+data/
+infra/
+tests/
