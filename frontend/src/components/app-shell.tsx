@@ -49,7 +49,7 @@ function Shell({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen overflow-x-clip">
       <header className="sticky top-0 z-30 border-b border-border bg-white">
-        <div className="mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 px-4 py-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
+        <div className="mx-auto grid w-full max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-x-4 gap-y-3 px-4 py-3 md:grid-cols-[minmax(0,1fr)_auto_auto] lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
           <Link href="/" className="col-start-1 row-start-1 flex min-w-0 items-center gap-3">
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-white">
               <CloudSun className="h-5 w-5" aria-hidden />
@@ -67,7 +67,7 @@ function Shell({ children }: { children: ReactNode }) {
           >
             {renderNavLinks()}
           </nav>
-          <div className="hidden min-w-0 items-center gap-2 lg:col-start-3 lg:row-start-1 lg:flex lg:justify-self-end">
+          <div className="hidden min-w-0 items-center gap-2 lg:col-start-3 lg:row-start-1 lg:flex lg:justify-self-end md:hidden">
             <SelectionDropdown
               label="Location"
               value={String(locationId ?? "")}
@@ -94,7 +94,7 @@ function Shell({ children }: { children: ReactNode }) {
             type="button"
             variant="secondary"
             size="icon"
-            className="col-start-2 row-start-1 lg:hidden"
+            className="col-start-2 row-start-1 md:col-start-3 lg:hidden"
             aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={menuOpen}
             aria-controls="responsive-navigation-menu"
@@ -102,15 +102,36 @@ function Shell({ children }: { children: ReactNode }) {
           >
             {menuOpen ? <X className="h-4 w-4" aria-hidden /> : <Menu className="h-4 w-4" aria-hidden />}
           </Button>
+          {/* Tablet‑only controls (visible on md, hidden on lg) */}
+          <div className="hidden md:flex lg:hidden items-center gap-2 col-start-2 row-start-1 justify-self-end">
+            <SelectionDropdown
+              label="Location"
+              value={String(locationId ?? "")}
+              onChange={(value) => setLocationId(Number(value))}
+              options={locations.map((item) => ({ value: String(item.id), label: item.name }))}
+              className="w-28 shrink-0"
+              menuClassName="w-56 max-w-[calc(100vw-2rem)]"
+            />
+            <NotificationCenter locations={locations} />
+            <SelectionDropdown
+              label="Units"
+              value={units}
+              onChange={(value) => {
+                if (value === "metric" || value === "imperial") setUnits(value);
+              }}
+              options={[{ value: "metric", label: "Metric" }, { value: "imperial", label: "Imperial" }]}
+              className="w-24 shrink-0"
+            />
+          </div>
           {menuOpen ? (
             <div
               id="responsive-navigation-menu"
-              className="col-span-2 grid min-w-0 gap-3 border-t border-border pt-3 lg:hidden"
+              className="col-span-2 grid min-w-0 gap-3 border-t border-border pt-3 md:col-span-3 lg:hidden"
             >
               <nav aria-label="Primary" className="grid grid-cols-2 gap-1">
                 {renderNavLinks(true)}
               </nav>
-              <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 border-t border-border pt-3">
+              <div className="grid min-w-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 border-t border-border pt-3 md:hidden">
                 <SelectionDropdown
                   label="Location"
                   value={String(locationId ?? "")}
