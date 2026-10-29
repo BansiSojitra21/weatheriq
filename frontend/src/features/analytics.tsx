@@ -198,12 +198,10 @@ export function AnalyticsPage() {
               {summary.data.rows} daily records in the selected range. Means and ranges use available readings only.
             </p>
             <div className="mt-3 overflow-x-auto">
-              <table className="w-full min-w-[680px] text-left text-sm">
+              <table className="w-full min-w-[500px] text-left text-sm">
                 <thead>
                   <tr>
                     <th className="py-2 pr-3">Measure</th>
-                    <th className="py-2 pr-3">Available</th>
-                    <th className="py-2 pr-3">Missing</th>
                     <th className="py-2 pr-3">Mean</th>
                     <th className="py-2 pr-3">Minimum</th>
                     <th className="py-2">Maximum</th>
@@ -211,15 +209,13 @@ export function AnalyticsPage() {
                 </thead>
                 <tbody>
                   {summary.data.rows === 0 ? (
-                    <tr><td colSpan={6} className="border-t border-border py-3 text-muted-foreground">No observations in this date range.</td></tr>
-                  ) : Object.entries(summary.data.missing).map(([key, coverage]) => {
+                    <tr><td colSpan={4} className="border-t border-border py-3 text-muted-foreground">No observations in this date range.</td></tr>
+                  ) : Object.entries(summary.data.missing).map(([key]) => {
                     const stats = summary.data.variables[key];
                     const unit = fieldUnit(key);
                     return (
                       <tr key={key} className="border-t border-border">
                         <th className="py-2 pr-3 font-normal">{FIELD_LABELS[key] ?? key}</th>
-                        <td className="py-2 pr-3">{coverage.count}</td>
-                        <td className="py-2 pr-3">{coverage.missing}</td>
                         <td className="py-2 pr-3">{displayValue(stats?.mean ?? null, unit)}</td>
                         <td className="py-2 pr-3">{displayValue(stats?.min ?? null, unit)}</td>
                         <td className="py-2">{displayValue(stats?.max ?? null, unit)}</td>
