@@ -1,0 +1,42 @@
+{
+  "name": "anomaly",
+  "version": "an-20261024T154644Z",
+  "algorithm": "IsolationForest",
+  "exploratory": true,
+  "classification_metrics": null,
+  "reason": "No labeled anomalies are available, so classification metrics are not computed.",
+  "fit_locations": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "train_end": "2026-09-27T00:00:00+00:00",
+  "feature_columns": [
+    "temperature_c",
+    "precipitation_mm",
+    "humidity_pct",
+    "wind_speed_kmh",
+    "pressure_hpa"
+  ],
+  "contamination": 0.03,
+  "seed": 42,
+  "limitations": "A flag means the measurement looks unusual compared with recent days or a pattern check fit on earlier data. It does not mean the weather is dangerous.",
+  "trained_at": "2026-10-24T15:46:44.402328+00:00"
+}

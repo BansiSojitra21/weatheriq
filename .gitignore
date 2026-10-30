@@ -6,8 +6,6 @@ __pycache__/
 .env
 data/*.db
 data/cache/
-ml/artifacts/*.joblib
-ml/artifacts/*.json
 frontend/node_modules/
 frontend/.next/
 frontend/playwright-report/

@@ -1,0 +1,204 @@
+{
+  "name": "precipitation",
+  "version": "pr-20261024T154630Z",
+  "algorithm": "lightgbm",
+  "target": "daily_precipitation_mm",
+  "seed": 42,
+  "by_horizon": [
+    {
+      "horizon_days": 1,
+      "occurrence_threshold_mm": 0.1,
+      "decision_threshold": 0.15000000000000002,
+      "decision_threshold_source": "validation_max_f1",
+      "positive_rate_train": 0.8241379310344827,
+      "positive_rate_test": 0.492,
+      "test": {
+        "precision": 0.4939759036144578,
+        "recall": 1.0,
+        "f1": 0.6612903225806451,
+        "pr_auc": 0.7851623068741763,
+        "brier": 0.3858654691519573,
+        "n": 500
+      },
+      "validation": {
+        "precision": 0.8732394366197183,
+        "recall": 1.0,
+        "f1": 0.9323308270676691,
+        "pr_auc": 0.9461603692599818,
+        "brier": 0.11247409306739944,
+        "n": 500
+      },
+      "climatology_baseline_test": {
+        "precision": 0.492,
+        "recall": 1.0,
+        "f1": 0.6595174262734584,
+        "pr_auc": 0.492,
+        "brier": 0.36025160523186683,
+        "n": 500
+      },
+      "persistence_baseline_test": {
+        "precision": 0.75,
+        "recall": 0.7560975609756098,
+        "f1": 0.7530364372469636,
+        "pr_auc": 0.6870731707317074,
+        "brier": 0.244,
+        "n": 500
+      },
+      "amount_test": {
+        "mae_all": 2.881448584504292,
+        "mae_wet": 3.806141511574264,
+        "n_wet": 246
+      },
+      "amount_persistence_mae_all": 2.0456,
+      "amount_climatology_mae_all": 6.57007551724138,
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-09-02T00:00:00+00:00",
+          "rows": 2320
+        },
+        "validation": {
+          "start": "2026-09-03T00:00:00+00:00",
+          "end": "2026-09-27T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-28T00:00:00+00:00",
+          "end": "2026-10-22T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    },
+    {
+      "horizon_days": 2,
+      "occurrence_threshold_mm": 0.1,
+      "decision_threshold": 0.1,
+      "decision_threshold_source": "validation_max_f1",
+      "positive_rate_train": 0.828695652173913,
+      "positive_rate_test": 0.492,
+      "test": {
+        "precision": 0.492,
+        "recall": 1.0,
+        "f1": 0.6595174262734584,
+        "pr_auc": 0.7606137203501739,
+        "brier": 0.4526609026116739,
+        "n": 500
+      },
+      "validation": {
+        "precision": 0.868,
+        "recall": 1.0,
+        "f1": 0.9293361884368309,
+        "pr_auc": 0.9512198020472312,
+        "brier": 0.12289713169048057,
+        "n": 500
+      },
+      "climatology_baseline_test": {
+        "precision": 0.492,
+        "recall": 1.0,
+        "f1": 0.6595174262734584,
+        "pr_auc": 0.492,
+        "brier": 0.3632999621928167,
+        "n": 500
+      },
+      "persistence_baseline_test": {
+        "precision": 0.7075098814229249,
+        "recall": 0.7276422764227642,
+        "f1": 0.717434869739479,
+        "pr_auc": 0.6488141007101771,
+        "brier": 0.282,
+        "n": 500
+      },
+      "amount_test": {
+        "mae_all": 3.7200273290157733,
+        "mae_wet": 4.536983060441521,
+        "n_wet": 246
+      },
+      "amount_persistence_mae_all": 2.443,
+      "amount_climatology_mae_all": 6.612547826086956,
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-09-01T00:00:00+00:00",
+          "rows": 2300
+        },
+        "validation": {
+          "start": "2026-09-02T00:00:00+00:00",
+          "end": "2026-09-26T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-27T00:00:00+00:00",
+          "end": "2026-10-21T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    },
+    {
+      "horizon_days": 3,
+      "occurrence_threshold_mm": 0.1,
+      "decision_threshold": 0.1,
+      "decision_threshold_source": "validation_max_f1",
+      "positive_rate_train": 0.8315789473684211,
+      "positive_rate_test": 0.492,
+      "test": {
+        "precision": 0.492,
+        "recall": 1.0,
+        "f1": 0.6595174262734584,
+        "pr_auc": 0.7573548975288021,
+        "brier": 0.39208165146112195,
+        "n": 500
+      },
+      "validation": {
+        "precision": 0.868,
+        "recall": 1.0,
+        "f1": 0.9293361884368309,
+        "pr_auc": 0.9507258102234777,
+        "brier": 0.11670214095208928,
+        "n": 500
+      },
+      "climatology_baseline_test": {
+        "precision": 0.492,
+        "recall": 1.0,
+        "f1": 0.6595174262734584,
+        "pr_auc": 0.492,
+        "brier": 0.3652498614958448,
+        "n": 500
+      },
+      "persistence_baseline_test": {
+        "precision": 0.6486486486486487,
+        "recall": 0.6829268292682927,
+        "f1": 0.6653465346534654,
+        "pr_auc": 0.5989795649307845,
+        "brier": 0.338,
+        "n": 500
+      },
+      "amount_test": {
+        "mae_all": 3.7401255648869305,
+        "mae_wet": 4.412383168387217,
+        "n_wet": 246
+      },
+      "amount_persistence_mae_all": 2.7146,
+      "amount_climatology_mae_all": 6.652200000000001,
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-08-31T00:00:00+00:00",
+          "rows": 2280
+        },
+        "validation": {
+          "start": "2026-09-01T00:00:00+00:00",
+          "end": "2026-09-25T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-26T00:00:00+00:00",
+          "end": "2026-10-20T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    }
+  ],
+  "limitations": "Rain predictions use recent daily totals. A day counts as wet above 0.1 mm. Most days are dry. The cutoff used to call a day wet was chosen on earlier days and then kept fixed. Amounts cannot go below zero. This is not a flood warning.",
+  "validation_use": "The occurrence threshold was selected on validation by maximum F1 and frozen before test scoring. Brier score and PR-AUC do not use that threshold.",
+  "trained_at": "2026-10-24T15:46:30.630660+00:00"
+}

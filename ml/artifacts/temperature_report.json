@@ -1,0 +1,4102 @@
+{
+  "name": "temperature",
+  "version": "ti-20261024T154625Z",
+  "algorithm": "lightgbm",
+  "target": "daily_mean_temperature_c",
+  "seed": 42,
+  "feature_columns": [
+    "temp_lag_1",
+    "temp_lag_2",
+    "temp_lag_3",
+    "temp_lag_7",
+    "temp_lag_14",
+    "temp_roll_mean_7",
+    "temp_roll_mean_14",
+    "temp_roll_std_7",
+    "precip_lag_1",
+    "precip_lag_2",
+    "precip_lag_7",
+    "precip_roll_sum_7",
+    "humidity_lag_1",
+    "humidity_roll_mean_7",
+    "wind_lag_1",
+    "pressure_lag_1",
+    "cloud_lag_1",
+    "sin_doy",
+    "cos_doy",
+    "sin_doy2",
+    "cos_doy2",
+    "sin_dow",
+    "cos_dow",
+    "month",
+    "latitude"
+  ],
+  "by_horizon": [
+    {
+      "horizon_days": 1,
+      "test": {
+        "mae": 0.6313223600062086,
+        "rmse": 0.8721926537913663,
+        "n": 500
+      },
+      "validation": {
+        "mae": 0.7415169153019351,
+        "rmse": 0.9723319170109547,
+        "n": 500
+      },
+      "persistence_test": {
+        "mae": 0.5147999999999999,
+        "rmse": 0.7527283706623525,
+        "n": 500
+      },
+      "fourier_test": {
+        "mae": 3.9752109893320933,
+        "rmse": 5.090461433942586,
+        "n": 500
+      },
+      "skill_vs_persistence": -0.22634491065697104,
+      "skill_vs_fourier": 0.8411851945216418,
+      "interval": {
+        "nominal": "model 10th-90th percentile",
+        "test_coverage": 0.702,
+        "n": 500,
+        "note": "Empirical holdout coverage. Not a calibrated prediction interval."
+      },
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-09-02T00:00:00+00:00",
+          "rows": 2320
+        },
+        "validation": {
+          "start": "2026-09-03T00:00:00+00:00",
+          "end": "2026-09-27T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-28T00:00:00+00:00",
+          "end": "2026-10-22T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    },
+    {
+      "horizon_days": 2,
+      "test": {
+        "mae": 0.9421651422057237,
+        "rmse": 1.2350824821904072,
+        "n": 500
+      },
+      "validation": {
+        "mae": 0.9700599352182449,
+        "rmse": 1.294689571005659,
+        "n": 500
+      },
+      "persistence_test": {
+        "mae": 0.7838,
+        "rmse": 1.0637010858319174,
+        "n": 500
+      },
+      "fourier_test": {
+        "mae": 7.486139593468943,
+        "rmse": 9.455908668032741,
+        "n": 500
+      },
+      "skill_vs_persistence": -0.20204789768528153,
+      "skill_vs_fourier": 0.8741453949071846,
+      "interval": {
+        "nominal": "model 10th-90th percentile",
+        "test_coverage": 0.666,
+        "n": 500,
+        "note": "Empirical holdout coverage. Not a calibrated prediction interval."
+      },
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-09-01T00:00:00+00:00",
+          "rows": 2300
+        },
+        "validation": {
+          "start": "2026-09-02T00:00:00+00:00",
+          "end": "2026-09-26T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-27T00:00:00+00:00",
+          "end": "2026-10-21T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    },
+    {
+      "horizon_days": 3,
+      "test": {
+        "mae": 1.2385910927635118,
+        "rmse": 1.5708521399301156,
+        "n": 500
+      },
+      "validation": {
+        "mae": 1.084469992602021,
+        "rmse": 1.4762982264894688,
+        "n": 500
+      },
+      "persistence_test": {
+        "mae": 0.9658,
+        "rmse": 1.275280361332362,
+        "n": 500
+      },
+      "fourier_test": {
+        "mae": 9.823233856315914,
+        "rmse": 12.409737338934953,
+        "n": 500
+      },
+      "skill_vs_persistence": -0.28245091402310196,
+      "skill_vs_fourier": 0.8739120832426125,
+      "interval": {
+        "nominal": "model 10th-90th percentile",
+        "test_coverage": 0.598,
+        "n": 500,
+        "note": "Empirical holdout coverage. Not a calibrated prediction interval."
+      },
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-08-31T00:00:00+00:00",
+          "rows": 2280
+        },
+        "validation": {
+          "start": "2026-09-01T00:00:00+00:00",
+          "end": "2026-09-25T00:00:00+00:00",
+          "rows": 500
+        },
+        "test": {
+          "start": "2026-09-26T00:00:00+00:00",
+          "end": "2026-10-20T00:00:00+00:00",
+          "rows": 500
+        }
+      }
+    },
+    {
+      "horizon_days": 7,
+      "test": {
+        "mae": 1.7790116438076056,
+        "rmse": 2.1551754199328506,
+        "n": 480
+      },
+      "validation": {
+        "mae": 1.1878225819897603,
+        "rmse": 1.497437874927576,
+        "n": 480
+      },
+      "persistence_test": {
+        "mae": 1.3991666666666664,
+        "rmse": 1.8249885844391829,
+        "n": 480
+      },
+      "fourier_test": {
+        "mae": 12.416584922000222,
+        "rmse": 15.894069308405838,
+        "n": 480
+      },
+      "skill_vs_persistence": -0.27147943571716926,
+      "skill_vs_fourier": 0.8567229511992884,
+      "interval": {
+        "nominal": "model 10th-90th percentile",
+        "test_coverage": 0.5729166666666666,
+        "n": 480,
+        "note": "Empirical holdout coverage. Not a calibrated prediction interval."
+      },
+      "split": {
+        "train": {
+          "start": "2026-05-10T00:00:00+00:00",
+          "end": "2026-08-29T00:00:00+00:00",
+          "rows": 2240
+        },
+        "validation": {
+          "start": "2026-08-30T00:00:00+00:00",
+          "end": "2026-09-22T00:00:00+00:00",
+          "rows": 480
+        },
+        "test": {
+          "start": "2026-09-23T00:00:00+00:00",
+          "end": "2026-10-16T00:00:00+00:00",
+          "rows": 480
+        }
+      }
+    }
+  ],
+  "by_location": [
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "mae": 0.6909536902817902,
+      "rmse": 0.7898521866947718,
+      "n": 25
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 1,
+      "mae": 0.5616366932256733,
+      "rmse": 0.725420861771542,
+      "n": 25
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "mae": 0.5620313839981529,
+      "rmse": 0.6665575861787758,
+      "n": 25
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "mae": 1.208774821859002,
+      "rmse": 1.5566672447171246,
+      "n": 25
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 1,
+      "mae": 0.5101027062420517,
+      "rmse": 0.675252245675788,
+      "n": 25
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 1,
+      "mae": 0.8786358941317425,
+      "rmse": 1.4820342792860113,
+      "n": 25
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 1,
+      "mae": 0.806125409400082,
+      "rmse": 0.9915408553082667,
+      "n": 25
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 1,
+      "mae": 0.35822474774311547,
+      "rmse": 0.4752363996458882,
+      "n": 25
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 1,
+      "mae": 0.5216588173887043,
+      "rmse": 0.7296879887571592,
+      "n": 25
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 1,
+      "mae": 0.7234598502127024,
+      "rmse": 1.0297656237194044,
+      "n": 25
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 1,
+      "mae": 0.5337682729891501,
+      "rmse": 0.6706671918745721,
+      "n": 25
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 1,
+      "mae": 0.5498102772718996,
+      "rmse": 0.7472070398656099,
+      "n": 25
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 1,
+      "mae": 0.8049476388658716,
+      "rmse": 1.0379541867671978,
+      "n": 25
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 1,
+      "mae": 0.6861623045590715,
+      "rmse": 0.8643722672666375,
+      "n": 25
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "mae": 0.41700388617509604,
+      "rmse": 0.5502822079016925,
+      "n": 25
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "mae": 0.7653115168829815,
+      "rmse": 0.9440874613459374,
+      "n": 25
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "mae": 0.48648031021947746,
+      "rmse": 0.704002852242315,
+      "n": 25
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 1,
+      "mae": 0.5286252072491429,
+      "rmse": 0.6276817400304965,
+      "n": 25
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "mae": 0.5471184359807233,
+      "rmse": 0.61651406590793,
+      "n": 25
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "mae": 0.48561533544774166,
+      "rmse": 0.667925145613969,
+      "n": 25
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "mae": 1.5435184299214577,
+      "rmse": 1.7865402069418046,
+      "n": 25
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 2,
+      "mae": 0.6809353061323801,
+      "rmse": 0.7979461355422136,
+      "n": 25
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "mae": 0.5998601501495249,
+      "rmse": 0.7284773304587404,
+      "n": 25
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "mae": 1.5520908545109813,
+      "rmse": 1.941409533409772,
+      "n": 25
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 2,
+      "mae": 0.8141145124374178,
+      "rmse": 1.150296910996935,
+      "n": 25
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 2,
+      "mae": 1.4522039008640075,
+      "rmse": 1.9330196560109096,
+      "n": 25
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 2,
+      "mae": 1.0635969478706895,
+      "rmse": 1.3436891528065178,
+      "n": 25
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 2,
+      "mae": 0.7017750820491621,
+      "rmse": 0.8756328953843573,
+      "n": 25
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 2,
+      "mae": 0.8569391901505422,
+      "rmse": 1.0249138711170176,
+      "n": 25
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 2,
+      "mae": 1.144240893736333,
+      "rmse": 1.4975469260235361,
+      "n": 25
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 2,
+      "mae": 0.707011770316895,
+      "rmse": 0.8254567483511923,
+      "n": 25
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 2,
+      "mae": 0.8012737980650677,
+      "rmse": 1.0099844894625158,
+      "n": 25
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 2,
+      "mae": 0.9778691246208784,
+      "rmse": 1.2387690173727128,
+      "n": 25
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 2,
+      "mae": 1.3269669843638168,
+      "rmse": 1.4732496180449492,
+      "n": 25
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "mae": 0.7850561015961796,
+      "rmse": 0.9514378102376437,
+      "n": 25
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "mae": 0.8984477892305368,
+      "rmse": 1.2290063566581766,
+      "n": 25
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "mae": 0.8460600480719429,
+      "rmse": 1.1282209879127534,
+      "n": 25
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 2,
+      "mae": 0.7391167190345793,
+      "rmse": 0.915521367974184,
+      "n": 25
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "mae": 0.6459396031372758,
+      "rmse": 0.7658968784823333,
+      "n": 25
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "mae": 0.7062856378548049,
+      "rmse": 0.9672087325966872,
+      "n": 25
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "mae": 2.154539899300046,
+      "rmse": 2.3635655278595142,
+      "n": 25
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 3,
+      "mae": 0.7076746208164617,
+      "rmse": 0.8366352107927996,
+      "n": 25
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "mae": 0.8241164835547888,
+      "rmse": 0.9521919517884228,
+      "n": 25
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "mae": 2.002007119310075,
+      "rmse": 2.434588802348372,
+      "n": 25
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 3,
+      "mae": 1.2456906163807748,
+      "rmse": 1.63596295974616,
+      "n": 25
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 3,
+      "mae": 1.8368362932539442,
+      "rmse": 2.3238885329300696,
+      "n": 25
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 3,
+      "mae": 1.3272742746879962,
+      "rmse": 1.6719675376808876,
+      "n": 25
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 3,
+      "mae": 1.1220206462749074,
+      "rmse": 1.2999239946069565,
+      "n": 25
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 3,
+      "mae": 1.2452197966773009,
+      "rmse": 1.4206437841184856,
+      "n": 25
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 3,
+      "mae": 1.567320753230928,
+      "rmse": 1.9605224285193916,
+      "n": 25
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 3,
+      "mae": 0.8436711057845493,
+      "rmse": 1.0195636860577624,
+      "n": 25
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 3,
+      "mae": 0.8273064539980999,
+      "rmse": 0.9976306626225053,
+      "n": 25
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 3,
+      "mae": 1.235704214268536,
+      "rmse": 1.5793262377168205,
+      "n": 25
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 3,
+      "mae": 1.7206390586600588,
+      "rmse": 1.8838659816256245,
+      "n": 25
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "mae": 0.9937640149282096,
+      "rmse": 1.2180926633292408,
+      "n": 25
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "mae": 1.4404420597278424,
+      "rmse": 1.7395209836755035,
+      "n": 25
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "mae": 1.434980087037524,
+      "rmse": 1.6190854350351147,
+      "n": 25
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 3,
+      "mae": 0.8035505139601596,
+      "rmse": 0.9522893687487098,
+      "n": 25
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "mae": 0.7799129884709239,
+      "rmse": 0.9211476382463171,
+      "n": 25
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "mae": 0.6591508549471098,
+      "rmse": 0.9180199721683439,
+      "n": 25
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 7,
+      "mae": 3.3671421637577175,
+      "rmse": 3.5783620050277887,
+      "n": 24
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 7,
+      "mae": 0.8095380310378261,
+      "rmse": 0.9525339629580888,
+      "n": 24
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 7,
+      "mae": 1.490643680555836,
+      "rmse": 1.6295044665289993,
+      "n": 24
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "mae": 2.6488154848993855,
+      "rmse": 3.1630619745736315,
+      "n": 24
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 7,
+      "mae": 1.5411514632387406,
+      "rmse": 2.108340162299672,
+      "n": 24
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 7,
+      "mae": 2.255759269640695,
+      "rmse": 2.7616910884478347,
+      "n": 24
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 7,
+      "mae": 1.6565627344650407,
+      "rmse": 1.921545306434157,
+      "n": 24
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "mae": 1.6132982320422264,
+      "rmse": 1.8481029664579234,
+      "n": 24
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 7,
+      "mae": 2.0298916732037164,
+      "rmse": 2.192704161739501,
+      "n": 24
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 7,
+      "mae": 1.7617079903705652,
+      "rmse": 1.9661688156633035,
+      "n": 24
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 7,
+      "mae": 0.7743384214557065,
+      "rmse": 0.9439942851312259,
+      "n": 24
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 7,
+      "mae": 0.9397848548589097,
+      "rmse": 1.102355507357317,
+      "n": 24
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "mae": 1.5940527925395953,
+      "rmse": 1.8318597361115119,
+      "n": 24
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "mae": 3.045802155961077,
+      "rmse": 3.1305166369720965,
+      "n": 24
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 7,
+      "mae": 1.8566070045084153,
+      "rmse": 1.9933931739008852,
+      "n": 24
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 7,
+      "mae": 1.6654747688406542,
+      "rmse": 2.004490172889202,
+      "n": 24
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 7,
+      "mae": 2.5706844102949002,
+      "rmse": 2.6836892606887766,
+      "n": 24
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 7,
+      "mae": 2.2799797070868433,
+      "rmse": 2.3685013463103064,
+      "n": 24
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 7,
+      "mae": 0.6664675336176082,
+      "rmse": 0.8885057146158372,
+      "n": 24
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "mae": 1.0125305037766525,
+      "rmse": 1.3470592048375951,
+      "n": 24
+    }
+  ],
+  "residuals_sample": [
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 30.7,
+      "predicted": 30.95618894690252,
+      "residual": -0.2561889469025225,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.8,
+      "predicted": 26.440320482166918,
+      "residual": -0.6403204821669171,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "issued_at": "2026-10-22T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 28.4,
+      "predicted": 28.313874108254538,
+      "residual": 0.08612589174546059,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 1,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 28.57619655446817,
+      "residual": -1.9761965544681672,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 1,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 30.3,
+      "predicted": 30.13426501140329,
+      "residual": 0.16573498859671076,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.827571834044875,
+      "residual": -0.8275718340448748,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 28.83275303908652,
+      "residual": -0.9327530390865206,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 1,
+      "issued_at": "2026-10-22T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 26.999137007697332,
+      "residual": -0.19913700769733111,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 28.170176955616192,
+      "residual": -0.37017695561619135,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.516486333708446,
+      "residual": 0.7835136662915545,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 32.5,
+      "predicted": 31.83551019268698,
+      "residual": 0.6644898073130214,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 1,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 27.748973995477716,
+      "residual": 0.15102600452228288,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 28.0966534799677,
+      "residual": -1.1966534799677007,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 24.3,
+      "predicted": 26.243519204791138,
+      "residual": -1.9435192047911372,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 29.0,
+      "predicted": 29.34796080466838,
+      "residual": -0.34796080466837864,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.0194148874724,
+      "residual": 0.18058511252759857,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 26.6561607750037,
+      "residual": 0.443839224996303,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 1,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 25.6,
+      "predicted": 24.2270916885705,
+      "residual": 1.3729083114295015,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 1,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.32877774646539,
+      "residual": -0.3287777464653914,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.995292990270404,
+      "residual": 0.3047070097295972,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 29.121034417661956,
+      "residual": -2.021034417661955,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 26.6579135233738,
+      "residual": -0.5579135233737986,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 1,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.5,
+      "predicted": 29.399245543167922,
+      "residual": 0.10075445683207818,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 29.069196390671163,
+      "residual": 0.9308036093288372,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 26.17613215919129,
+      "residual": 0.023867840808708962,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 26.924727725855053,
+      "residual": -0.12472772585505254,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.062778749668684,
+      "residual": 0.23722125033131647,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 1,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 29.554284212935443,
+      "residual": -0.9542842129354412,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 1,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 30.658913828316393,
+      "residual": -0.25891382831639476,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 31.8,
+      "predicted": 30.832211101736178,
+      "residual": 0.967788898263823,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 28.475325740121146,
+      "residual": 0.22467425987885292,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 1,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 31.861180772112327,
+      "residual": 0.5388192278876716,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 1,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 31.7,
+      "predicted": 30.923960200096232,
+      "residual": 0.7760397999037671,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 1,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 27.974179202447722,
+      "residual": -0.6741792024477213,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 31.3,
+      "predicted": 30.9199645255043,
+      "residual": 0.3800354744956991,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 1,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 30.9,
+      "predicted": 29.595433632874308,
+      "residual": 1.304566367125691,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.589797528362524,
+      "residual": 0.010202471637477117,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.77701832101171,
+      "residual": -1.0770183210117104,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 29.9,
+      "predicted": 29.639818480881175,
+      "residual": 0.2601815191188237,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.1,
+      "predicted": 28.743506505132395,
+      "residual": -0.6435065051323932,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 25.2,
+      "predicted": 26.697582619907738,
+      "residual": -1.4975826199077389,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 21.6,
+      "predicted": 23.946538746502096,
+      "residual": -2.3465387465020946,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 28.82654343009404,
+      "residual": 0.5734565699059573,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 1,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 28.16862619097797,
+      "residual": 0.7313738090220276,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 1,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 23.94030654297329,
+      "residual": 0.2596934570267102,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 26.911247333277682,
+      "residual": -0.01124733327768368,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 30.5,
+      "predicted": 29.464461993305832,
+      "residual": 1.0355380066941677,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 31.1,
+      "predicted": 30.80032860827769,
+      "residual": 0.2996713917223097,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 29.039117779303208,
+      "residual": -0.7391177793032071,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 31.6,
+      "predicted": 32.12719444598513,
+      "residual": -0.5271944459851312,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 26.72172722015381,
+      "residual": -0.621727220153808,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 1,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 28.750686245757464,
+      "residual": 0.14931375424253446,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 1,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 29.45322065213861,
+      "residual": 0.9467793478613871,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 1,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 28.247481287634507,
+      "residual": 0.5525187123654938,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 1,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.74253981517713,
+      "residual": -0.4425398151771276,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 28.162580807285533,
+      "residual": -0.3625808072855321,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 1,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.3,
+      "predicted": 25.551071816750095,
+      "residual": -0.2510718167500947,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 1,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 32.6,
+      "predicted": 31.729262595507457,
+      "residual": 0.8707374044925444,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 1,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 28.92768829989137,
+      "residual": -0.12768829989136776,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.398498026448028,
+      "residual": -0.1984980264480285,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 27.296443956912448,
+      "residual": -1.0964439569124487,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 1,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 27.251880511762394,
+      "residual": 0.9481194882376052,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 1,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 26.3,
+      "predicted": 27.194469277216303,
+      "residual": -0.8944692772163023,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 1,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.92259208487522,
+      "residual": -0.3225920848752182,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 1,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.323277282852775,
+      "residual": -0.12327728285277573,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 1,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 25.1,
+      "predicted": 25.062271476178033,
+      "residual": 0.03772852382196845,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 27.79381075873552,
+      "residual": 0.8061892412644802,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 1,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 23.927568949254542,
+      "residual": 0.2724310507454568,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 1,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 28.85748614910193,
+      "residual": -0.6574861491019313,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 1,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.850246855492095,
+      "residual": -0.3502468554920952,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 1,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 29.22541584786845,
+      "residual": 0.7745841521315491,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 1,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 31.548777934784603,
+      "residual": 0.8512220652153957,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 1,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 29.3,
+      "predicted": 29.348155678958765,
+      "residual": -0.04815567895876427,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 1,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 29.842871310972008,
+      "residual": -0.44287131097200927,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 1,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-16T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.156082785715917,
+      "residual": -0.45608278571591754,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 1,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.292619895450937,
+      "residual": 0.007380104549064015,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 1,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 27.17047787570718,
+      "residual": -0.27047787570718285,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 1,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.634044134053312,
+      "residual": -0.13404413405331184,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 26.639355609774974,
+      "residual": 0.36064439022502626,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 1,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.772541596289685,
+      "residual": -0.7725415962896847,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 30.7,
+      "predicted": 29.976373423758876,
+      "residual": 0.7236265762411236,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.8,
+      "predicted": 25.8062978440387,
+      "residual": -0.006297844038698486,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 28.4,
+      "predicted": 28.634110197118904,
+      "residual": -0.23411019711890546,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 2,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 29.183800505212453,
+      "residual": -2.5838005052124515,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 2,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 30.3,
+      "predicted": 30.24408522056849,
+      "residual": 0.05591477943151091,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.886034168102043,
+      "residual": -0.8860341681020429,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 28.474144940506278,
+      "residual": -0.5741449405062795,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 2,
+      "issued_at": "2026-10-21T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 27.53011495509396,
+      "residual": -0.7301149550939598,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 26.59033371180897,
+      "residual": 1.2096662881910305,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.270233220310296,
+      "residual": 1.0297667796897052,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 32.5,
+      "predicted": 30.08377145695988,
+      "residual": 2.41622854304012,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 2,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 27.61329343662897,
+      "residual": 0.28670656337102685,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 26.98184071938397,
+      "residual": -0.08184071938397253,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 24.3,
+      "predicted": 27.553700646171627,
+      "residual": -3.2537006461716267,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 29.0,
+      "predicted": 28.996543896210653,
+      "residual": 0.0034561037893467983,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 26.854804063906506,
+      "residual": 0.34519593609349286,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 27.66157130224629,
+      "residual": -0.5615713022462892,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 2,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 25.6,
+      "predicted": 24.20281668556628,
+      "residual": 1.3971833144337218,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 2,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.636991865910097,
+      "residual": -0.6369918659100975,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 26.57700790544336,
+      "residual": 1.7229920945566413,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 28.886856111735035,
+      "residual": -1.786856111735034,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 29.28515847782107,
+      "residual": -3.1851584778210693,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 2,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.5,
+      "predicted": 30.109881715925884,
+      "residual": -0.6098817159258836,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 28.88194651266026,
+      "residual": 1.1180534873397399,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 26.457707296711323,
+      "residual": -0.25770729671132386,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 26.982070470470315,
+      "residual": -0.18207047047031466,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.28327847796905,
+      "residual": 1.0167215220309522,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 2,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.919268868644068,
+      "residual": -0.3192688686440661,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 2,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 30.211324309152122,
+      "residual": 0.1886756908478766,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 31.8,
+      "predicted": 29.417703565273545,
+      "residual": 2.382296434726456,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 28.667045503490638,
+      "residual": 0.032954496509361775,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 2,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 31.160932551911873,
+      "residual": 1.2390674480881252,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 2,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 31.7,
+      "predicted": 30.245395001554087,
+      "residual": 1.4546049984459124,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 2,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 27.64105088320271,
+      "residual": -0.3410508832027084,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 31.3,
+      "predicted": 30.080098270758235,
+      "residual": 1.2199017292417658,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 2,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 30.9,
+      "predicted": 29.77742585554095,
+      "residual": 1.1225741444590476,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 27.21400340213382,
+      "residual": 1.385996597866182,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.184332207320708,
+      "residual": -0.48433220732070836,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 29.9,
+      "predicted": 29.238128708779197,
+      "residual": 0.6618712912208018,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.1,
+      "predicted": 27.99836521157083,
+      "residual": 0.10163478842916973,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 25.2,
+      "predicted": 28.108925897254235,
+      "residual": -2.9089258972542353,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 21.6,
+      "predicted": 23.93304483299507,
+      "residual": -2.3330448329950677,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 28.73759919212896,
+      "residual": 0.6624008078710375,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 2,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 27.384779854772127,
+      "residual": 1.5152201452278717,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 2,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 24.077743795986954,
+      "residual": 0.12225620401304482,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 27.00756255289029,
+      "residual": -0.10756255289028971,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 30.5,
+      "predicted": 28.775767477367882,
+      "residual": 1.7242325226321178,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 31.1,
+      "predicted": 30.510145214349144,
+      "residual": 0.5898547856508571,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.003139008847867,
+      "residual": 0.2968609911521334,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 31.6,
+      "predicted": 30.33980355995673,
+      "residual": 1.26019644004327,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 25.85726211360837,
+      "residual": 0.2427378863916303,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 2,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 27.65171974126498,
+      "residual": 1.2482802587350186,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 2,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 28.74303612304159,
+      "residual": 1.6569638769584074,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 2,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 26.98446950677052,
+      "residual": 1.8155304932294811,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 2,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.363427254645302,
+      "residual": -0.06342725464530119,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 27.89264386633629,
+      "residual": -0.09264386633628874,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 2,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.3,
+      "predicted": 25.79875501949238,
+      "residual": -0.49875501949237844,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 2,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 32.6,
+      "predicted": 30.84005305238066,
+      "residual": 1.7599469476193406,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 2,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 28.182517482383027,
+      "residual": 0.617482517616974,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 26.54540520606244,
+      "residual": 0.6545947939375587,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 27.559483788922172,
+      "residual": -1.359483788922173,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 2,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 27.98866484973746,
+      "residual": 0.21133515026253846,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 2,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 26.3,
+      "predicted": 27.174829079363356,
+      "residual": -0.8748290793633551,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 2,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.508986999202467,
+      "residual": 0.09101300079753472,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 2,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 26.873204544082213,
+      "residual": 0.3267954559177859,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 2,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 25.1,
+      "predicted": 24.470211447995542,
+      "residual": 0.6297885520044595,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 27.529296856064388,
+      "residual": 1.0707031439356136,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 2,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 23.42553887034182,
+      "residual": 0.774461129658178,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 2,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 28.921416913766166,
+      "residual": -0.7214169137661663,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 2,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.420733902312744,
+      "residual": 0.07926609768725612,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 2,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 28.403326332111785,
+      "residual": 1.596673667888215,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 2,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 30.65891090825037,
+      "residual": 1.741089091749629,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 2,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 29.3,
+      "predicted": 28.97452744670043,
+      "residual": 0.32547255329956926,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 2,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 29.398026471445633,
+      "residual": 0.0019735285543660552,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 2,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-16T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.804368404068683,
+      "residual": -1.1043684040686834,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 2,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.866698066736824,
+      "residual": 0.4333019332631771,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 2,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 27.95592421363963,
+      "residual": -1.0559242136396314,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 2,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 26.880653430890202,
+      "residual": 0.6193465691097977,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 26.997565810155937,
+      "residual": 0.0024341898440631837,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 2,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.1996863432447,
+      "residual": -0.19968634324470003,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 30.7,
+      "predicted": 30.022047456882163,
+      "residual": 0.6779525431178364,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.8,
+      "predicted": 26.795983691879858,
+      "residual": -0.9959836918798572,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 28.4,
+      "predicted": 29.219103030461167,
+      "residual": -0.819103030461168,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 3,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 28.65364260463561,
+      "residual": -2.053642604635609,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 3,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 30.3,
+      "predicted": 30.86165147987393,
+      "residual": -0.5616514798739303,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 28.522320808866574,
+      "residual": -1.5223208088665743,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 28.80618041629104,
+      "residual": -0.9061804162910398,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 3,
+      "issued_at": "2026-10-20T00:00:00+00:00",
+      "target_time": "2026-10-23T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 28.38926882600691,
+      "residual": -1.5892688260069079,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 27.523516282947572,
+      "residual": 0.2764837170524288,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "issued_at": "2026-09-26T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.111162758424953,
+      "residual": 1.1888372415750474,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 32.5,
+      "predicted": 29.762465354561517,
+      "residual": 2.7375346454384832,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 3,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.9,
+      "predicted": 27.185969316191542,
+      "residual": 0.7140306838084562,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 26.68306161438144,
+      "residual": 0.21693838561855827,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 24.3,
+      "predicted": 28.256785887550304,
+      "residual": -3.9567858875503035,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 29.0,
+      "predicted": 29.086466355758347,
+      "residual": -0.08646635575834694,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.738228226376105,
+      "residual": -0.5382282263761056,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 27.503310967556896,
+      "residual": -0.40331096755689444,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 3,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 25.6,
+      "predicted": 24.444058698580246,
+      "residual": 1.1559413014197553,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 3,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.657160817548075,
+      "residual": -0.6571608175480748,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 26.8297444365388,
+      "residual": 1.4702555634612011,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 29.0167483890946,
+      "residual": -1.9167483890946002,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 28.666428818134918,
+      "residual": -2.5664288181349164,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 3,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.5,
+      "predicted": 29.154956330512068,
+      "residual": 0.3450436694879322,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 28.904361966084473,
+      "residual": 1.0956380339155274,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 26.419891176292076,
+      "residual": -0.21989117629207655,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 27.406437447173715,
+      "residual": -0.6064374471737146,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.64139892260285,
+      "residual": 0.6586010773971509,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 3,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.299054065782276,
+      "residual": 0.30094593421772586,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 3,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 30.51848380199015,
+      "residual": -0.11848380199015196,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 31.8,
+      "predicted": 29.92510032495155,
+      "residual": 1.8748996750484501,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-09-26T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 28.28830410786708,
+      "residual": 0.4116958921329186,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 3,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 30.294314705840666,
+      "residual": 2.1056852941593327,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 3,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 31.7,
+      "predicted": 30.27179422404776,
+      "residual": 1.4282057759522395,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 3,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 27.760194304345166,
+      "residual": -0.4601943043451655,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 31.3,
+      "predicted": 29.643248032897983,
+      "residual": 1.6567519671020179,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 3,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 30.9,
+      "predicted": 30.06109333643886,
+      "residual": 0.83890666356114,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 26.26566433358406,
+      "residual": 2.3343356664159423,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-16T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.27908636559794,
+      "residual": -0.5790863655979415,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 29.9,
+      "predicted": 27.88026996858243,
+      "residual": 2.01973003141757,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.1,
+      "predicted": 27.977015234039417,
+      "residual": 0.1229847659605845,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 25.2,
+      "predicted": 29.6543182688633,
+      "residual": -4.4543182688633,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 21.6,
+      "predicted": 25.21601404224982,
+      "residual": -3.6160140422498195,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 28.530124551400135,
+      "residual": 0.8698754485998634,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 3,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 27.60282655729879,
+      "residual": 1.297173442701208,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 3,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 24.45934043115525,
+      "residual": -0.25934043115525185,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 26.408749482181793,
+      "residual": 0.49125051781820517,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-09-26T00:00:00+00:00",
+      "target_time": "2026-09-29T00:00:00+00:00",
+      "actual": 30.5,
+      "predicted": 29.216239024748628,
+      "residual": 1.2837609752513721,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 31.1,
+      "predicted": 30.04597220869224,
+      "residual": 1.0540277913077603,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.989692948948477,
+      "residual": 0.3103070510515238,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 31.6,
+      "predicted": 29.619039121990806,
+      "residual": 1.9809608780091956,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-18T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 27.0134311434242,
+      "residual": -0.913431143424198,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 3,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 27.194138998914003,
+      "residual": 1.7058610010859958,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 3,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 28.390619273745926,
+      "residual": 2.009380726254072,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 3,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 26.531297369926733,
+      "residual": 2.2687026300732676,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 3,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.66440451240943,
+      "residual": 0.6355954875905709,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.8,
+      "predicted": 27.429603836698224,
+      "residual": 0.37039616330177694,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 3,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.3,
+      "predicted": 25.83221551863127,
+      "residual": -0.5322155186312685,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 3,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 32.6,
+      "predicted": 28.913088581642015,
+      "residual": 3.6869114183579867,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 3,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 27.706341277060833,
+      "residual": 1.0936587229391677,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 26.257617693501725,
+      "residual": 0.9423823064982741,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 27.272556211625542,
+      "residual": -1.0725562116255425,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 3,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 28.080852320039146,
+      "residual": 0.11914767996085374,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 3,
+      "issued_at": "2026-10-19T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 26.3,
+      "predicted": 27.333517365822427,
+      "residual": -1.0335173658224264,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 3,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.573381926886757,
+      "residual": 0.026618073113244378,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 3,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 26.108677147522585,
+      "residual": 1.0913228524774148,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 3,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 25.1,
+      "predicted": 24.718278485672474,
+      "residual": 0.381721514327527,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 27.27551869688068,
+      "residual": 1.3244813031193203,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 3,
+      "issued_at": "2026-10-17T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 24.2,
+      "predicted": 24.080110332137508,
+      "residual": 0.11988966786249122,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 3,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 29.30862102715972,
+      "residual": -1.108621027159721,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 3,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.97239559155022,
+      "residual": -0.47239559155022093,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 3,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 27.69908249779754,
+      "residual": 2.3009175022024593,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 3,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 30.274997107383687,
+      "residual": 2.125002892616312,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 3,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 29.3,
+      "predicted": 29.495310756310765,
+      "residual": -0.19531075631076433,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 3,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 29.370663154088046,
+      "residual": 0.029336845911952736,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 3,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-16T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.872453292541472,
+      "residual": -1.1724532925414728,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 3,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 27.63165220677196,
+      "residual": 0.6683477932280404,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 3,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 28.67356134326713,
+      "residual": -1.7735613432671329,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 3,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.125134352686494,
+      "residual": 0.3748656473135057,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.283500451313227,
+      "residual": -0.2835004513132269,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 3,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.0,
+      "predicted": 27.39692055314614,
+      "residual": -0.3969205531461384,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-24T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 28.36694796209879,
+      "residual": -1.4669479620987929,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 7,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 29.6,
+      "predicted": 28.507315538630095,
+      "residual": 1.092684461369906,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 29.0,
+      "predicted": 25.452474336788498,
+      "residual": 3.547525663211502,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 7,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 30.2,
+      "predicted": 28.43834537019552,
+      "residual": 1.7616546298044788,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 25.80012174719655,
+      "residual": 2.3998782528034504,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.0,
+      "predicted": 26.658290307071677,
+      "residual": 2.3417096929283225,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.5,
+      "predicted": 27.94872794215173,
+      "residual": 1.5512720578482693,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 27.5,
+      "predicted": 27.27295989473454,
+      "residual": 0.22704010526545915,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 26.911811925404212,
+      "residual": 0.38818807459578863,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 26.8,
+      "predicted": 27.09874822729574,
+      "residual": -0.29874822729573935,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 7,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 31.6,
+      "predicted": 28.539798586052946,
+      "residual": 3.0602014139470555,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 28.9,
+      "predicted": 28.851073974252596,
+      "residual": 0.048926025747402235,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 7,
+      "issued_at": "2026-09-24T00:00:00+00:00",
+      "target_time": "2026-10-01T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 27.243893119045822,
+      "residual": 0.056106880954178706,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 25.6,
+      "predicted": 28.820391284961197,
+      "residual": -3.2203912849611953,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 7,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 24.0,
+      "predicted": 24.41524896236151,
+      "residual": -0.41524896236150965,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 22.4,
+      "predicted": 25.20514166240246,
+      "residual": -2.8051416624024625,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.5,
+      "predicted": 26.800993322717055,
+      "residual": 1.699006677282945,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 31.0,
+      "predicted": 28.278427541995683,
+      "residual": 2.7215724580043172,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 7,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 25.0,
+      "predicted": 23.83206260091804,
+      "residual": 1.1679373990819606,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 7,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 27.06829789043882,
+      "residual": 1.6317021095611786,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "issued_at": "2026-10-05T00:00:00+00:00",
+      "target_time": "2026-10-12T00:00:00+00:00",
+      "actual": 29.1,
+      "predicted": 27.467568186462703,
+      "residual": 1.6324318135372984,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 29.4,
+      "predicted": 27.65663921919469,
+      "residual": 1.7433607808053075,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 7,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 25.8,
+      "predicted": 27.61550798511942,
+      "residual": -1.815507985119421,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 7,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 28.527783960397336,
+      "residual": -1.6277839603973376,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 7,
+      "issued_at": "2026-10-01T00:00:00+00:00",
+      "target_time": "2026-10-08T00:00:00+00:00",
+      "actual": 30.9,
+      "predicted": 30.692308885468183,
+      "residual": 0.20769111453181566,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 29.07939145054007,
+      "residual": -2.8793914505400693,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 7,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 28.4,
+      "predicted": 27.43229403160755,
+      "residual": 0.9677059683924476,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 32.2,
+      "predicted": 29.242296539402048,
+      "residual": 2.957703460597955,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 28.552728462315407,
+      "residual": -1.6527284623154088,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 7,
+      "issued_at": "2026-09-23T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 30.7,
+      "predicted": 29.533277263370135,
+      "residual": 1.1667227366298647,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 24.299301966554232,
+      "residual": 4.000698033445769,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 7,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 31.1,
+      "predicted": 28.033116620765746,
+      "residual": 3.0668833792342554,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 7,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 28.398726606338194,
+      "residual": -2.2987266063381924,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 7,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 31.1,
+      "predicted": 28.071947119288673,
+      "residual": 3.0280528807113285,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 16,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 27.3,
+      "predicted": 27.708971582433723,
+      "residual": -0.4089715824337219,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 7,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 30.621986060344835,
+      "residual": -3.9219860603448353,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-07T00:00:00+00:00",
+      "target_time": "2026-10-14T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.40423470361211,
+      "residual": -0.20423470361211216,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 26.40134061333303,
+      "residual": 2.2986593866669693,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 26.1,
+      "predicted": 29.275555359666285,
+      "residual": -3.1755553596662836,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 1,
+      "horizon_days": 7,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 32.7,
+      "predicted": 29.595620710325512,
+      "residual": 3.1043792896744904,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 31.2,
+      "predicted": 28.56716840523168,
+      "residual": 2.6328315947683194,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.646775351732934,
+      "residual": -0.3467753517329335,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 22.3,
+      "predicted": 25.327693955990753,
+      "residual": -3.0276939559907525,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 30.7,
+      "predicted": 28.327930221363886,
+      "residual": 2.3720697786361136,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 2,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 24.8,
+      "predicted": 24.04111565297289,
+      "residual": 0.7588843470271094,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 32.0,
+      "predicted": 28.949943676081016,
+      "residual": 3.0500563239189837,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-09-26T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 28.7,
+      "predicted": 28.49706232671311,
+      "residual": 0.20293767328688972,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 26.935575398418976,
+      "residual": -0.2355753984189768,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 7,
+      "issued_at": "2026-10-04T00:00:00+00:00",
+      "target_time": "2026-10-11T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 27.944560288681526,
+      "residual": -1.3445602886815244,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 7,
+      "issued_at": "2026-10-08T00:00:00+00:00",
+      "target_time": "2026-10-15T00:00:00+00:00",
+      "actual": 26.9,
+      "predicted": 26.393200536039576,
+      "residual": 0.506799463960423,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 17,
+      "horizon_days": 7,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 27.6,
+      "predicted": 24.83732848041941,
+      "residual": 2.762671519580593,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 15,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 29.6,
+      "predicted": 27.41247750417238,
+      "residual": 2.187522495827622,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 18,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 28.832389052774122,
+      "residual": 1.5676109472258766,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 19,
+      "horizon_days": 7,
+      "issued_at": "2026-09-25T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 27.4,
+      "predicted": 27.414905495967027,
+      "residual": -0.01490549596702806,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 27.85534869898767,
+      "residual": -1.6553486989876696,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 12,
+      "horizon_days": 7,
+      "issued_at": "2026-09-25T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 30.0,
+      "predicted": 28.06211500915276,
+      "residual": 1.937884990847241,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 24.5,
+      "predicted": 28.456389440167676,
+      "residual": -3.9563894401676762,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 7,
+      "issued_at": "2026-09-28T00:00:00+00:00",
+      "target_time": "2026-10-05T00:00:00+00:00",
+      "actual": 30.4,
+      "predicted": 30.40404518967761,
+      "residual": -0.004045189677611916,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-10-14T00:00:00+00:00",
+      "target_time": "2026-10-21T00:00:00+00:00",
+      "actual": 28.3,
+      "predicted": 28.05610508118526,
+      "residual": 0.24389491881473901,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 5,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 30.39893873154258,
+      "residual": -3.1989387315425795,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.6,
+      "predicted": 28.544371600801373,
+      "residual": 0.05562839919862839,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 7,
+      "issued_at": "2026-10-06T00:00:00+00:00",
+      "target_time": "2026-10-13T00:00:00+00:00",
+      "actual": 29.2,
+      "predicted": 28.404977328845447,
+      "residual": 0.7950226711545518,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-29T00:00:00+00:00",
+      "target_time": "2026-10-06T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 27.700598432386517,
+      "residual": -1.1005984323865157,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 6,
+      "horizon_days": 7,
+      "issued_at": "2026-10-10T00:00:00+00:00",
+      "target_time": "2026-10-17T00:00:00+00:00",
+      "actual": 24.8,
+      "predicted": 27.533430031065233,
+      "residual": -2.7334300310652324,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 7,
+      "issued_at": "2026-10-11T00:00:00+00:00",
+      "target_time": "2026-10-18T00:00:00+00:00",
+      "actual": 25.3,
+      "predicted": 27.682246375691072,
+      "residual": -2.3822463756910714,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-16T00:00:00+00:00",
+      "actual": 26.7,
+      "predicted": 27.804193265194293,
+      "residual": -1.1041932651942936,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 32.4,
+      "predicted": 28.866880624704404,
+      "residual": 3.5331193752955947,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 3,
+      "horizon_days": 7,
+      "issued_at": "2026-10-13T00:00:00+00:00",
+      "target_time": "2026-10-20T00:00:00+00:00",
+      "actual": 26.3,
+      "predicted": 27.39654972066473,
+      "residual": -1.0965497206647292,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-23T00:00:00+00:00",
+      "target_time": "2026-09-30T00:00:00+00:00",
+      "actual": 26.2,
+      "predicted": 28.206989241089243,
+      "residual": -2.0069892410892436,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 10,
+      "horizon_days": 7,
+      "issued_at": "2026-09-25T00:00:00+00:00",
+      "target_time": "2026-10-02T00:00:00+00:00",
+      "actual": 29.3,
+      "predicted": 28.177026141368373,
+      "residual": 1.122973858631628,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 13,
+      "horizon_days": 7,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 26.3,
+      "predicted": 28.495056605038588,
+      "residual": -2.1950566050385873,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 25.4,
+      "predicted": 26.48066239376197,
+      "residual": -1.0806623937619726,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 9,
+      "horizon_days": 7,
+      "issued_at": "2026-10-09T00:00:00+00:00",
+      "target_time": "2026-10-16T00:00:00+00:00",
+      "actual": 28.8,
+      "predicted": 27.30906578395495,
+      "residual": 1.4909342160450514,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 7,
+      "issued_at": "2026-09-27T00:00:00+00:00",
+      "target_time": "2026-10-04T00:00:00+00:00",
+      "actual": 26.6,
+      "predicted": 28.96274931322145,
+      "residual": -2.3627493132214497,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 7,
+      "horizon_days": 7,
+      "issued_at": "2026-10-03T00:00:00+00:00",
+      "target_time": "2026-10-10T00:00:00+00:00",
+      "actual": 25.6,
+      "predicted": 28.44047873643337,
+      "residual": -2.8404787364333686,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 8,
+      "horizon_days": 7,
+      "issued_at": "2026-09-30T00:00:00+00:00",
+      "target_time": "2026-10-07T00:00:00+00:00",
+      "actual": 28.2,
+      "predicted": 26.279666455838825,
+      "residual": 1.9203335441611742,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 11,
+      "horizon_days": 7,
+      "issued_at": "2026-10-02T00:00:00+00:00",
+      "target_time": "2026-10-09T00:00:00+00:00",
+      "actual": 27.6,
+      "predicted": 28.22405156739479,
+      "residual": -0.6240515673947868,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 20,
+      "horizon_days": 7,
+      "issued_at": "2026-10-12T00:00:00+00:00",
+      "target_time": "2026-10-19T00:00:00+00:00",
+      "actual": 27.1,
+      "predicted": 28.509401589123744,
+      "residual": -1.4094015891237426,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 14,
+      "horizon_days": 7,
+      "issued_at": "2026-10-15T00:00:00+00:00",
+      "target_time": "2026-10-22T00:00:00+00:00",
+      "actual": 32.2,
+      "predicted": 29.267911353306303,
+      "residual": 2.9320886466936997,
+      "split": "chronological_holdout"
+    },
+    {
+      "location_id": 4,
+      "horizon_days": 7,
+      "issued_at": "2026-09-26T00:00:00+00:00",
+      "target_time": "2026-10-03T00:00:00+00:00",
+      "actual": 27.2,
+      "predicted": 27.112787004171,
+      "residual": 0.08721299582899888,
+      "split": "chronological_holdout"
+    }
+  ],
+  "rolling_origin": {
+    "status": "completed",
+    "horizon_days": 1,
+    "mae_mean": 0.636811323956145,
+    "folds": [
+      {
+        "train_end": "2026-09-04T00:00:00+00:00",
+        "test_start": "2026-09-05T00:00:00+00:00",
+        "test_end": "2026-09-20T00:00:00+00:00",
+        "mae": 0.6662791966830911,
+        "n": 320
+      },
+      {
+        "train_end": "2026-09-20T00:00:00+00:00",
+        "test_start": "2026-09-21T00:00:00+00:00",
+        "test_end": "2026-10-06T00:00:00+00:00",
+        "mae": 0.6580703796129418,
+        "n": 320
+      },
+      {
+        "train_end": "2026-10-06T00:00:00+00:00",
+        "test_start": "2026-10-07T00:00:00+00:00",
+        "test_end": "2026-10-22T00:00:00+00:00",
+        "mae": 0.5860843955724022,
+        "n": 320
+      }
+    ],
+    "note": "Expanding-window evaluation. These folds were not used to choose hyperparameters."
+  },
+  "feature_importance": {
+    "temp_lag_1": 675.0,
+    "temp_lag_2": 391.0,
+    "temp_lag_3": 363.0,
+    "temp_lag_7": 389.0,
+    "temp_lag_14": 471.0,
+    "temp_roll_mean_7": 324.0,
+    "temp_roll_mean_14": 308.0,
+    "temp_roll_std_7": 480.0,
+    "precip_lag_1": 400.0,
+    "precip_lag_2": 391.0,
+    "precip_lag_7": 334.0,
+    "precip_roll_sum_7": 350.0,
+    "humidity_lag_1": 323.0,
+    "humidity_roll_mean_7": 490.0,
+    "wind_lag_1": 554.0,
+    "pressure_lag_1": 557.0,
+    "cloud_lag_1": 527.0,
+    "sin_doy": 452.0,
+    "cos_doy": 362.0,
+    "sin_doy2": 138.0,
+    "cos_doy2": 23.0,
+    "sin_dow": 200.0,
+    "cos_dow": 200.0,
+    "month": 0.0,
+    "latitude": 298.0
+  },
+  "shap": {
+    "available": true,
+    "sample_rows": 120,
+    "mean_absolute": {
+      "temp_lag_1": 1.480476384962412,
+      "temp_lag_2": 0.04648301884654672,
+      "temp_lag_3": 0.051509445809374665,
+      "temp_lag_7": 0.06391548702753856,
+      "temp_lag_14": 0.05042676648977215,
+      "temp_roll_mean_7": 0.09970602022051014,
+      "temp_roll_mean_14": 0.06298087140953057,
+      "temp_roll_std_7": 0.03752578762771624,
+      "precip_lag_1": 0.12996225179989834,
+      "precip_lag_2": 0.0347419921435657,
+      "precip_lag_7": 0.03865568216047745,
+      "precip_roll_sum_7": 0.02686019240044925,
+      "humidity_lag_1": 0.05305668001522036,
+      "humidity_roll_mean_7": 0.12226975414228579,
+      "wind_lag_1": 0.05247861176191325,
+      "pressure_lag_1": 0.024112929060669305,
+      "cloud_lag_1": 0.28698869407526545,
+      "sin_doy": 0.17859714055936185,
+      "cos_doy": 0.028716103384935906,
+      "sin_doy2": 0.008423128219221804,
+      "cos_doy2": 0.0032113764380602163,
+      "sin_dow": 0.022571184019302235,
+      "cos_dow": 0.024128654367551534,
+      "month": 0.0,
+      "latitude": 0.06728789689860018
+    }
+  },
+  "fourier_notes": [],
+  "primary_split": {
+    "train": {
+      "start": "2026-05-10T00:00:00+00:00",
+      "end": "2026-09-02T00:00:00+00:00",
+      "rows": 2320
+    },
+    "validation": {
+      "start": "2026-09-03T00:00:00+00:00",
+      "end": "2026-09-27T00:00:00+00:00",
+      "rows": 500
+    },
+    "test": {
+      "start": "2026-09-28T00:00:00+00:00",
+      "end": "2026-10-22T00:00:00+00:00",
+      "rows": 500
+    }
+  },
+  "training_temperature_mean": 28.788833333333333,
+  "training_temperature_std": 2.9913030881282903,
+  "limitations": "This temperature prediction uses recent daily weather for this city. It is issued after a day is complete and uses only information available then. It is not an official forecast. Average error is checked on past days that were not used to build it. The likely range is an estimate from those past days, not a guarantee. Nothing is claimed beyond the trained 1 to 7 day range.",
+  "validation_use": "Validation metrics are reported and were not used to fit or select the temperature model.",
+  "trained_at": "2026-10-24T15:46:25.612760+00:00"
+}
